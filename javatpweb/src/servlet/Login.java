@@ -11,23 +11,17 @@ import controllers.CtrlABMPeople;
 import entity.People;
 import util.AppDataException;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.Level;
-
 /**
  * Servlet implementation class Login
  */
 @WebServlet({"/Login", "/login"})
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private Logger logger;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
     public Login() {
-        logger = LogManager.getLogger(getClass());
         // TODO Auto-generated constructor stub
     }
 
@@ -65,8 +59,6 @@ try {
 			}
 			
 			request.getSession().setAttribute("user", pers);
-			
-			logger.log(Level.INFO,"log in "+pers.getDni());
 			
 			request.getRequestDispatcher("WEB-INF/welcome.jsp").forward(request, response);
 			//response.getWriter().append(user).append(" ").append(pass);
