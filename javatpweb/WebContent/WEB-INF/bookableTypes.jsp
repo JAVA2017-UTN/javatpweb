@@ -1,32 +1,48 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-	<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<title>AMBC Tipos Elementos</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>ABMC Tipos Elementos</title>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
 
-<h1>Resgistro de tipos de elementos</h1>
-   
-       <form class="form-group" name="ABMCTipoElementos" action="bookableTypesServlet.java" method="post">
-      
-         Id: <input type = "text" name = "id" />
-         <br>
-         <br>
-         Nombre: <input type = "text" name = "nombre" />
-         <br>
-         <br>
-         Cantidad maxima de reservas: <input type = "text" name = "cantReservasPendientes" />
-         <br>
-         <br>    
-         <input type = "submit" name = "aceptarbtn" value = "Agregar" />
-         
-          <br>
-         <br>    
-         <input type = "submit" name = "Buscarbtn" value = "Buscar" />
-         
-      </form>
+<div class="container">
+  <h2>Hover Rows</h2>
+  <p>The .table-hover class enables a hover state on table rows:</p>            
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Nombre</th>
+        <th>Cantidad Maxima de Reservas</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>2</td>
+        <td>Autos</td>
+        <td>14</td>
+      </tr>
+      <tr>
+        <td>Mary</td>
+        <td>Moe</td>
+        <td>mary@example.com</td>
+      </tr>
+      <tr>
+        <td>July</td>
+        <td>Dooley</td>
+        <td>july@example.com</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 </body>
 </html>

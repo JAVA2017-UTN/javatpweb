@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import entity.BookableTypes;
+import util.AppDataException;
 import controllers.CtrlBookingTypes;
 
 /**
@@ -49,12 +50,17 @@ public class BookableTypesServlet extends HttpServlet {
 			bt.setCantReservasPendientes(Integer.parseInt(cantReservasPendientes));
 			
 			CtrlBookingTypes ctrl = new CtrlBookingTypes();
-			
-			BookableTypes bookTypes = null; //this.mapearDeForm????
 
-			request.setAttribute("listaTiposElementos", ctrl.getAll());
-			request.getSession().setAttribute("id", bookTypes);
-			request.getRequestDispatcher("WEB-INF/bookableTypes.jsp").forward(request, response);
+			
+			try {
+				request.setAttribute("listaTiposElementos", ctrl.getAll());
+			} catch (AppDataException ade) {
+				request.setAttribute("Error", ade.getMessage());
+			} catch (Exception e) {
+				response.setStatus(502);
+			}
+				
+			request.getRequestDispatcher("/WEB-INF/bookableTypes.jsp").forward(request, response);
 						
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -76,6 +82,8 @@ public class BookableTypesServlet extends HttpServlet {
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	}
+	
+	
 	
 	
 
