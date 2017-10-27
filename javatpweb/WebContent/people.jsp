@@ -1,3 +1,4 @@
+<%@page import="org.apache.jasper.tagplugins.jstl.core.If"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="entity.People"%>
 <%@page import="controllers.CtrlABMPeople"%>
@@ -84,25 +85,38 @@
 	</nav>
 
 	<div class="container">
-		 <div class="col-md-6 col-md-offset-1">
+		 <div class="col-md-12 col-md-offset-1">
 			<h1>Lista de Personas</h1>
 			<br>
 			<table class="table table-hover">
 			   <tr>
+			   		<th>ID</th>
 					<th>DNI</th>
 					<th>Apellido</th>
 					<th>Nombre</th>
+					<th>Usuario</th>
+					<th>Contraseña</th>
+					<th>Habilitado</th>
+					<th></th>
 				</tr>
 				<%
 					CtrlABMPeople ctrl= new CtrlABMPeople();
 					ArrayList<People> listaPers= ctrl.getAll();
 					for(People p : listaPers){
 				%>
-				<tr>
-					<td><%=p.getDni() %></td>
-					<td><%=p.getApellido() %></td>
-					<td><%=p.getNombre() %></td>
-				</tr>
+				<form method="POST" action="EditaPersona">
+					<tr>
+					
+						<td><%=p.getId() %><input type="hidden" name="id" value="<%=p.getId() %>"></td>
+						<td><%=p.getDni() %><input type="hidden" name="dni" value="<%=p.getDni() %>"></td>
+						<td><%=p.getApellido() %><input type="hidden" name="apellido" value="<%=p.getApellido() %>"></td>
+						<td><%=p.getNombre() %><input type="hidden" name="nombre" value="<%=p.getNombre() %>"></td>
+						<td><%=p.getUsuario() %><input type="hidden" name="user" value="<%=p.getUsuario() %>"></td>
+						<td><%=p.getContrasenia() %><input type="hidden" name="contra" value="<%=p.getContrasenia() %>"></td>
+						<td><%=p.isHabilitado() %><input type="hidden" name="estado" value="<%=p.isHabilitado() %>"></td>
+						<td><button type="submit" class="btn btn-default btn-sm">SELECCIONAR</button></td>
+					</tr>
+				</form>
 				<%
 					}
 				%>
