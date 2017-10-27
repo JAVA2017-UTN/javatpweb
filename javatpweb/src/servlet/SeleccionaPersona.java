@@ -12,16 +12,16 @@ import entity.People;
 import util.AppDataException;
 
 /**
- * Servlet implementation class AltaPersona
+ * Servlet implementation class EditaPersona
  */
-@WebServlet("/AltaPersona")
-public class AltaPersona extends HttpServlet {
+@WebServlet("/EditaPersona")
+public class SeleccionaPersona extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AltaPersona() {
+    public SeleccionaPersona() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,14 +39,15 @@ public class AltaPersona extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
+			String id = request.getParameter("id");
 			String dni = request.getParameter("dni");
-			String user = request.getParameter("usuario");
-			String pass = request.getParameter("contrasenia");
+			String user = request.getParameter("user");
+			String pass = request.getParameter("contra");
 			String nombre = request.getParameter("nombre");
 			String apellido = request.getParameter("apellido");
-			String estadoForm = request.getParameter("estado");
-			boolean estado = true;
-			if (estadoForm == "1") {
+			Boolean estadoForm = Boolean.parseBoolean(request.getParameter("estado"));
+			boolean estado;
+			if (estadoForm) {
 				estado = true;
 			}
 			else {
@@ -55,20 +56,19 @@ public class AltaPersona extends HttpServlet {
 			CtrlABMPeople ctrl = new CtrlABMPeople();
 			People per = new People();
 			per.setDni(dni);
+			per.setId(Integer.parseInt(id));
 			per.setNombre(nombre);
 			per.setApellido(apellido);
 			per.setEstado(estado);
 			per.setUsuario(user);
 			per.setContrasenia(pass);
 			try {
-				ctrl.add(per);
-			} catch (AppDataException ade) {
-				request.setAttribute("Error", ade.getMessage());
+				request.setAttribute("persona", per);
 			} catch (Exception e) {
 				response.setStatus(502);
 			}
 			
-			request.getRequestDispatcher("WEB-INF/people.jsp").forward(request, response);
+			request.getRequestDispatcher("WEB-INF/bmcPersona.jsp").forward(request, response);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
