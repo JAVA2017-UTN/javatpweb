@@ -56,9 +56,9 @@
           Tipo Elementos <b class="caret"></b>
         </a>
         <ul class="dropdown-menu">
-          <li><a href="#">Nuevo Tipo Elemento</a></li>
+          <li><a href="altaBookableTypes.jsp">Nuevo Tipo Elemento</a></li>
            <li class="divider"></li>
-          <li><a href="people.jsp">Lista Tipo Elemento</a></li>
+          <li><a href="BookableTipes.jsp">Lista Tipo Elemento</a></li>
           <li class="divider"></li>
         </ul>
       </li>
