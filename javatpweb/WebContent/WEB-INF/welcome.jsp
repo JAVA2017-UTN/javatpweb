@@ -45,7 +45,7 @@
           Elementos <b class="caret"></b>
         </a>
         <ul class="dropdown-menu">
-          <li><a href="altaBookableItems">Nuevo Elemento</a></li>
+          <li><a href="altaBookableItems.jsp">Nuevo Elemento</a></li>
            <li class="divider"></li>
           <li><a href="bookableItems.jsp">Lista Elementos</a></li>
           <li class="divider"></li>

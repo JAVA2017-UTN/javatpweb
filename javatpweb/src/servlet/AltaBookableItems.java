@@ -14,7 +14,7 @@ import util.AppDataException;
 /**
  * Servlet implementation class altaBookableItems
  */
-@WebServlet("/AltaBookableItems")
+@WebServlet({"/AltaBookableItems", "/altaBookableItems"})
 public class AltaBookableItems extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

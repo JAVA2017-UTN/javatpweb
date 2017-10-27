@@ -46,9 +46,9 @@
           Elementos <b class="caret"></b>
         </a>
         <ul class="dropdown-menu">
-          <li><a href="#">Nuevo Elemento</a></li>
+          <li><a href="altaBookableItems.jsp">Nuevo Elemento</a></li>
            <li class="divider"></li>
-          <li><a href="people.jsp">Lista Elementos</a></li>
+          <li><a href="bookableItems.jsp">Lista Elementos</a></li>
           <li class="divider"></li>
         </ul>
       </li>
@@ -57,9 +57,9 @@
           Tipo Elementos <b class="caret"></b>
         </a>
         <ul class="dropdown-menu">
-          <li><a href="#">Nuevo Tipo Elemento</a></li>
+          <li><a href="altaBookableTypes.jsp">Nuevo Tipo Elemento</a></li>
            <li class="divider"></li>
-          <li><a href="people.jsp">Lista Tipo Elemento</a></li>
+          <li><a href="bookableTypes.jsp">Lista Tipo Elemento</a></li>
           <li class="divider"></li>
         </ul>
       </li>
@@ -68,9 +68,9 @@
           Reservas <b class="caret"></b>
         </a>
         <ul class="dropdown-menu">
-          <li><a href="#">Nueva Reserva</a></li>
+          <li><a href="altaReserva.jsp">Nueva Reserva</a></li>
            <li class="divider"></li>
-          <li><a href="#">Lista Reserva</a></li>
+          <li><a href="reservas.jsp">Lista Reserva</a></li>
           <li class="divider"></li>
         </ul>
       </li>
