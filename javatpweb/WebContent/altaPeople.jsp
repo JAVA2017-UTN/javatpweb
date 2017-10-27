@@ -47,7 +47,7 @@
         <ul class="dropdown-menu">
           <li><a href="#">Nuevo Elemento</a></li>
            <li class="divider"></li>
-          <li><a href="people.jsp">Lista Elementos</a></li>
+          <li><a href="bookableItems.jsp">Lista Elementos</a></li>
           <li class="divider"></li>
         </ul>
       </li>
@@ -58,7 +58,7 @@
         <ul class="dropdown-menu">
           <li><a href="altaBookableTypes.jsp">Nuevo Tipo Elemento</a></li>
            <li class="divider"></li>
-          <li><a href="BookableTipes.jsp">Lista Tipo Elemento</a></li>
+          <li><a href="bookableTipes.jsp">Lista Tipo Elemento</a></li>
           <li class="divider"></li>
         </ul>
       </li>

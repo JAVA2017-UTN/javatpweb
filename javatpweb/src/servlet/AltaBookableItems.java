@@ -7,21 +7,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import controllers.CtrlBookingTypes;
-import entity.BookableTypes;
+import controllers.CtrlBookableItems;
+import entity.BookableItems;
 import util.AppDataException;
 
 /**
- * Servlet implementation class SeleccionaBookableTypes
+ * Servlet implementation class altaBookableItems
  */
-@WebServlet("/SeleccionaBookableTypes")
-public class SeleccionaBookableTypes extends HttpServlet {
+@WebServlet("/AltaBookableItems")
+public class AltaBookableItems extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SeleccionaBookableTypes() {
+    public AltaBookableItems() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,37 +38,36 @@ public class SeleccionaBookableTypes extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
 		try {
-			String id = request.getParameter("id");
+			
 			String nombre = request.getParameter("nombre");
-			String cantReservasPendientes = request.getParameter("cantReservasPendientes");
+			int id_tipoElemento = Integer.parseInt(request.getParameter("tipoElemento"));
+		
 			
-	
-			CtrlBookingTypes ctrl = new CtrlBookingTypes();
+			CtrlBookableItems ctrl = new CtrlBookableItems();
 			
-			BookableTypes bt = new BookableTypes();
+			BookableItems bi = new BookableItems();
 			
-			bt.setId(Integer.parseInt((id)));
-			try{
-				bt.setNombre(nombre);
-			} catch (Exception e){
-				request.setAttribute("Error", e.getMessage());
-			}
-			bt.setCantReservasPendientes(Integer.parseInt(cantReservasPendientes));
+			
+			bi.setNombre(nombre);
+			bi.setId_tipoElemento(id_tipoElemento);
+			
 			
 			try {
-				request.setAttribute("bt", bt);
+				ctrl.add(bi);
+			} catch (AppDataException ade) {
+				request.setAttribute("Error", ade.getMessage());
 			} catch (Exception e) {
 				response.setStatus(502);
 			}
 			
-			request.getRequestDispatcher("WEB-INF/bmcBookableTypes.jsp").forward(request, response);
+			request.getRequestDispatcher("/bookableItems.jsp").forward(request, response);
 			
-			} catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-			}
 		}
+
 	}
+	
 
-
+}
