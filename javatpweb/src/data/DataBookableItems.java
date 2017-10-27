@@ -51,6 +51,45 @@ public class DataBookableItems {
 		
 	}
 	
+	public ArrayList<BookableItems> getAllByType(int id_tipoEle) throws Exception{
+		
+		ResultSet rs=null;
+		PreparedStatement stmt=null;
+		ArrayList<BookableItems> bookitems= new ArrayList<BookableItems>();
+		try {
+			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
+					"select *  from bookable_items where id_tipo_elemento=?");
+			stmt.setInt(1, id_tipoEle);
+			rs=stmt.executeQuery();
+			if(rs!=null){
+				while(rs.next()){
+					BookableItems bi =new BookableItems();
+					bi.setId(Integer.parseInt(rs.getString("id")));
+					bi.setNombre(rs.getString("nombre"));
+					bi.setId_tipoElemento(Integer.parseInt(rs.getString("id_tipo_elemento")));
+					bookitems.add(bi);
+				}
+			}
+		} catch (SQLException e) {
+			
+			throw e;
+		} catch (AppDataException ade){
+			throw ade;
+		}
+		
+
+		try {
+			if(rs!=null) rs.close();
+			if(stmt!=null) stmt.close();
+			FactoryConexion.getInstancia().releaseConn();
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		
+		return bookitems;
+	}	
+	
 	public ArrayList<String> getAllNames(int id_tipo) throws Exception{
 			ResultSet rs=null;
 			PreparedStatement stmt=null;
