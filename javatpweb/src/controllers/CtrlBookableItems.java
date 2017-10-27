@@ -45,6 +45,10 @@ public class CtrlBookableItems {
 		return databi.getAll();
 	}
 	
+	public ArrayList<BookableItems> getAllByType(int id_tipoEle)throws Exception{
+		return databi.getAllByType(id_tipoEle);
+	}
+	
 	public BookableItems getRow(int index) throws Exception{
 		bookitems = databi.getAll();
 		return bookitems.get(index);
