@@ -90,7 +90,7 @@
 			<br>
 		<table class="table table-hover">
 			   <tr>
-					<th>ID</th>
+					<th>Id</th>
 					<th>Nombre</th>
 					<th>Cant. Maxima de Reservas</th>
 				</tr>
@@ -99,11 +99,17 @@
 					ArrayList<BookableTypes> listaBt= ctrl.getAll();
 					for(BookableTypes bt : listaBt){
 				%>
+				<form class="form-group" action="SeleccionaBookableTypes" method="post">
 				<tr>
-					<td><%=bt.getId() %></td>
-					<td><%=bt.getNombre() %></td>
-					<td><%=bt.getCantReservasPendientes() %></td>
+					<td><%=bt.getId() %><input type="hidden" name= "id" value = "<%=bt.getId() %>"></td>
+					<td><%=bt.getNombre() %><input type="hidden" name= "nombre" value = "<%=bt.getNombre() %>"></td>
+					<td><%=bt.getCantReservasPendientes() %><input type="hidden" name= "cantReservasPendientes" value = "<%=bt.getCantReservasPendientes() %>"></td>
+					<td>
+   					<button type="submit" class="btn btn-default btn-sm" id="deleteBtn">Seleccionar</button>
+	
+					</td>
 				</tr>
+				</form>
 				<%
 					}
 				%>

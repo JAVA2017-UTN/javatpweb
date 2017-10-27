@@ -3,9 +3,9 @@ package controllers;
 import java.util.ArrayList;
 
 import data.DataBookableTypes;
-import entity.BookableItems;
+
 import entity.BookableTypes;
-import entity.People;
+
 
 public class CtrlBookingTypes {
 	

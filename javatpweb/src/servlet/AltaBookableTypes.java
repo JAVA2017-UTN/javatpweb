@@ -7,8 +7,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import controllers.CtrlABMPeople;
-import entity.People;
 import util.AppDataException;
 import entity.BookableTypes;
 import controllers.CtrlBookingTypes;
@@ -17,13 +15,13 @@ import controllers.CtrlBookingTypes;
  * Servlet implementation class BookableTypesServlet
  */
 @WebServlet("/BookableTypesServlet")
-public class BookableTypesServlet extends HttpServlet {
+public class AltaBookableTypes extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BookableTypesServlet() {
+    public AltaBookableTypes() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -89,7 +87,20 @@ public class BookableTypesServlet extends HttpServlet {
 	 * @see HttpServlet#doDelete(HttpServletRequest, HttpServletResponse)
 	 */
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
+//		String id = request.getParameter("id");
+//		
+//		CtrlBookingTypes ctrl = new CtrlBookingTypes();
+//			
+//		BookableTypes bt = new BookableTypes();
+//		
+//		bt.setId(Integer.parseInt(id));
+//		
+//		ctrl.getById(id);
+//		
+//		ctrl.delete(bt);;
+		
+		
 	}
 
 }
