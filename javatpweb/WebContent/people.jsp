@@ -104,7 +104,7 @@
 					ArrayList<People> listaPers= ctrl.getAll();
 					for(People p : listaPers){
 				%>
-				<form method="POST" action="EditaPersona">
+				<form method="POST" action="SeleccionarPersona">
 					<tr>
 					
 						<td><%=p.getId() %><input type="hidden" name="id" value="<%=p.getId() %>"></td>
