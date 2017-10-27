@@ -1,13 +1,14 @@
 <%@page import="java.util.ArrayList"%>
-<%@page import="entity.People"%>
-<%@page import="controllers.CtrlABMPeople"%>
+<%@page import="entity.BookableTypes"%>
+<%@page import ="entity.People" %>
+<%@page import="controllers.CtrlBookingTypes"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Lista Persona</title>
+<title>Lista Tipos de Elementos</title>
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
@@ -58,9 +59,9 @@
 	          Tipo Elementos <b class="caret"></b>
 	        </a>
 	        <ul class="dropdown-menu">
-	          <li><a href="altaBookableTypes">Nuevo Tipo Elemento</a></li>
+	          <li><a href="altaBookableTypes.jsp">Nuevo Tipo Elemento</a></li>
 	           <li class="divider"></li>
-	          <li><a href="BookableTypes.jsp">Lista Tipo Elemento</a></li>
+	          <li><a href="bookableTypes.jsp">Lista Tipo Elemento</a></li>
 	          <li class="divider"></li>
 	        </ul>
 	      </li>
@@ -85,23 +86,23 @@
 
 	<div class="container">
 		 <div class="col-md-6 col-md-offset-1">
-			<h1>Lista de Personas</h1>
+			<h1>Lista de Tipos de Elementos</h1>
 			<br>
-			<table class="table table-hover">
+		<table class="table table-hover">
 			   <tr>
-					<th>DNI</th>
-					<th>Apellido</th>
+					<th>ID</th>
 					<th>Nombre</th>
+					<th>Cant. Maxima de Reservas</th>
 				</tr>
 				<%
-					CtrlABMPeople ctrl= new CtrlABMPeople();
-					ArrayList<People> listaPers= ctrl.getAll();
-					for(People p : listaPers){
+					CtrlBookingTypes ctrl= new CtrlBookingTypes();
+					ArrayList<BookableTypes> listaBt= ctrl.getAll();
+					for(BookableTypes bt : listaBt){
 				%>
 				<tr>
-					<td><%=p.getDni() %></td>
-					<td><%=p.getApellido() %></td>
-					<td><%=p.getNombre() %></td>
+					<td><%=bt.getId() %></td>
+					<td><%=bt.getNombre() %></td>
+					<td><%=bt.getCantReservasPendientes() %></td>
 				</tr>
 				<%
 					}
