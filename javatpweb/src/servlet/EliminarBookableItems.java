@@ -40,17 +40,17 @@ public class EliminarBookableItems extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			if(request.getParameter("modificar") != null){
-				String id = request.getParameter("id");
+				int id = Integer.parseInt(request.getParameter("id"));
 				String nombre = request.getParameter("nombre");
-				String id_tipoElemento = request.getParameter("idTipoElemento");
+				int id_tipoElemento = Integer.parseInt(request.getParameter("tipoElemento"));
 				
 				CtrlBookableItems ctrl = new CtrlBookableItems();
 				
 				BookableItems bi = new BookableItems();
 				
-				bi.setId(Integer.parseInt((id)));
+				bi.setId(id);
 				bi.setNombre(nombre);
-				bi.setId_tipoElemento(Integer.parseInt(id_tipoElemento));
+				bi.setId_tipoElemento(id_tipoElemento);
 				
 				try {
 					ctrl.update(bi);
@@ -61,15 +61,18 @@ public class EliminarBookableItems extends HttpServlet {
 				}
 			}
 			if(request.getParameter("eliminar") != null){
-				String id = request.getParameter("id");
-				String nombre = request.getParameter("nombre");
+				
+				int id = Integer.parseInt(request.getParameter("id"));
+				//String nombre = request.getParameter("nombre");
+				//int id_tipoElemento = Integer.parseInt(request.getParameter("tipoElemento"));
 				
 				CtrlBookableItems ctrl = new CtrlBookableItems();
 				
 				BookableItems bi = new BookableItems();
 				
-				bi.setId(Integer.parseInt((id)));
-				bi.setNombre(nombre);
+				bi.setId(id);
+				//bi.setNombre(nombre);
+				//bi.setId_tipoElemento(id_tipoElemento);
 				
 				try {
 					ctrl.delete(bi);
