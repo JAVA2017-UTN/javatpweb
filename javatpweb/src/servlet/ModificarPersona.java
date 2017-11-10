@@ -48,7 +48,7 @@ public class ModificarPersona extends HttpServlet {
 				String apellido = request.getParameter("apellido");
 				String estadoForm = request.getParameter("estado");
 				boolean estado = true;
-				if (estadoForm == "1") {
+				if (estadoForm.equals("1")) {
 					estado = true;
 				}
 				else {

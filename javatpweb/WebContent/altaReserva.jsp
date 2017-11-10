@@ -93,13 +93,13 @@
      <hr>
      <form class="form-group" action="AltaReserva" method="post">
            	<div class="form-group">
-		   		<input type="hidden" class="form-control" name="tipo_elemento" value="<%=(int)session.getAttribute("id_tipoEle")%>">
+		   		<input type="hidden" class="form-control" name="tipo_elemento" value="<%=(Integer)session.getAttribute("id_tipoEle")%>">
 			</div>
    			<div class="form-group">
                  <select name="elemento" class="form-control">
                  <%
                  CtrlBookableItems ctrlItems = new CtrlBookableItems();
-                 ArrayList<BookableItems> listbi = ctrlItems.getAllByType((int)session.getAttribute("id_tipoEle"));
+                 ArrayList<BookableItems> listbi = ctrlItems.getAllByType((Integer)session.getAttribute("id_tipoEle"));
                  for(BookableItems bi : listbi) {
                  %>
                  	<option value="<%=bi.getId() %>"><%=bi.getNombre()%></option>

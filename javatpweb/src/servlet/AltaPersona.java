@@ -68,7 +68,7 @@ public class AltaPersona extends HttpServlet {
 				response.setStatus(502);
 			}
 			
-			request.getRequestDispatcher("WEB-INF/people.jsp").forward(request, response);
+			request.getRequestDispatcher("people.jsp").forward(request, response);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

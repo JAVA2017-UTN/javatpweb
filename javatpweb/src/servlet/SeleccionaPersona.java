@@ -14,7 +14,7 @@ import util.AppDataException;
 /**
  * Servlet implementation class EditaPersona
  */
-@WebServlet("/EditaPersona")
+@WebServlet("/SeleccionaPersona")
 public class SeleccionaPersona extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
