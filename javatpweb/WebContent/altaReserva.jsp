@@ -73,7 +73,7 @@
           Reservas <b class="caret"></b>
         </a>
         <ul class="dropdown-menu">
-          <li><a href="altaReserva.jsp">Nueva Reserva</a></li>
+          <li><a href="seleccionTipoEle.jsp">Nueva Reserva</a></li>
            <li class="divider"></li>
           <li><a href="reservas.jsp">Lista Reserva</a></li>
           <li class="divider"></li>
@@ -89,34 +89,20 @@
 	
 <div class="container">
  <div class="col-md-6 col-md-offset-1">
-     <h1>Alta de una nueva Reserva</h1>
+     <h1>Alta de una nueva reserva</h1>
      <hr>
      <form class="form-group" action="AltaReserva" method="post">
+           	<div class="form-group">
+		   		<input type="hidden" class="form-control" name="tipo_elemento" value="<%=(int)session.getAttribute("id_tipoEle")%>">
+			</div>
    			<div class="form-group">
-                 <select name="tipo_elemento" class="form-control">
-                 <% 
-                 CtrlBookingTypes ctrl = new CtrlBookingTypes();
-                 ArrayList<BookableTypes> listbt = ctrl.getAll();
-                 for(BookableTypes bt : listbt) {
-                 %>
-                 	<option value="<%=bt.getId() %>"><%=bt.getNombre()%></option>
-                 <%
-                 }
-                 %>
-		       </select>
-      		</div>
-   			<div class="form-group">
-                 <%if(request.getParameter("tipo_elemento") != null) { %>
                  <select name="elemento" class="form-control">
                  <%
                  CtrlBookableItems ctrlItems = new CtrlBookableItems();
-                 ArrayList<BookableItems> listbi = ctrlItems.getAllByType(Integer.parseInt(request.getParameter("tipo_elemento")));
+                 ArrayList<BookableItems> listbi = ctrlItems.getAllByType((int)session.getAttribute("id_tipoEle"));
                  for(BookableItems bi : listbi) {
                  %>
                  	<option value="<%=bi.getId() %>"><%=bi.getNombre()%></option>
-                 <%
-                 }
-                 %>
                  <%
                  }
                  %>

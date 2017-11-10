@@ -7,21 +7,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import controllers.CtrlABMPeople;
-import entity.People;
-import util.AppDataException;
-
 /**
- * Servlet implementation class Login
+ * Servlet implementation class SeleccionarTipoElemento
  */
-@WebServlet({"/Login", "/login"})
-public class Login extends HttpServlet {
+@WebServlet("/SeleccionarTipoElemento")
+public class SeleccionarTipoElemento extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Login() {
+    public SeleccionarTipoElemento() {
+        super();
         // TODO Auto-generated constructor stub
     }
 
@@ -37,34 +34,9 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-try {
-			
-			String user=request.getParameter("user");
-			String pass=request.getParameter("pass");
-			
-			People per=new People();
-			per.setUsuario(user);
-			per.setContrasenia(pass);
-			
-			CtrlABMPeople ctrl= new CtrlABMPeople();
-			
-			People pers=ctrl.validaUsuario(per);
-			
-			try {
-				request.setAttribute("listaPersonas", ctrl.getAll());
-			} catch (AppDataException ade) {
-				request.setAttribute("Error", ade.getMessage());
-			} catch (Exception e) {
-				response.setStatus(502);
-			}
-			
-			request.getSession().setAttribute("user", pers);
-			
-			request.getRequestDispatcher("WEB-INF/welcome.jsp").forward(request, response);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		int id_tipo = Integer.parseInt(request.getParameter("tipo_elemento"));
+		request.getSession().setAttribute("id_tipoEle", id_tipo);
+		request.getRequestDispatcher("altaReserva.jsp").forward(request, response);
 	}
 
 }

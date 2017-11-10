@@ -70,7 +70,7 @@
           Reservas <b class="caret"></b>
         </a>
         <ul class="dropdown-menu">
-          <li><a href="altaReserva.jsp">Nueva Reserva</a></li>
+          <li><a href="seleccionTipoEle.jsp">Nueva Reserva</a></li>
            <li class="divider"></li>
           <li><a href="reservas.jsp">Lista Reserva</a></li>
           <li class="divider"></li>
@@ -105,7 +105,7 @@
 					<td><%=bi.getNombre() %><input type="hidden" name= "nombre" value = "<%=bi.getNombre() %>"></td>
 					<td><%=bi.getId_tipoElemento() %><input type="hidden" name= "idTipoElemento" value = "<%=bi.getId_tipoElemento()%>"></td>
 					<td>
-   					<button type="submit" class="btn btn-default btn-sm" id="seleccionar">Seleccionar</button>
+   					<button type="submit" class="btn btn-default btn-sm" id="seleccionar">SELECCIONAR</button>
 	
 					</td>
 				</tr>

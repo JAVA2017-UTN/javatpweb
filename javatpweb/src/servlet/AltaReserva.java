@@ -46,8 +46,7 @@ public class AltaReserva extends HttpServlet {
 			Date fecha = Date.valueOf(request.getParameter("fecha"));
 			Time hora = Time.valueOf(request.getParameter("hora")+":00");
 			int id_tipoEle = Integer.parseInt(request.getParameter("tipo_elemento"));
-			/*int id_ele = Integer.parseInt(request.getParameter("elemento"));*/
-			int id_ele = 1;
+			int id_ele = Integer.parseInt(request.getParameter("elemento"));
 			int id_persona = Integer.parseInt(request.getParameter("id_persona"));
 			CtrlBooking ctrl = new CtrlBooking();
 			Booking bok = new Booking();

@@ -70,7 +70,7 @@
           Reservas <b class="caret"></b>
         </a>
         <ul class="dropdown-menu">
-          <li><a href="altaReserva.jsp">Nueva Reserva</a></li>
+          <li><a href="seleccionTipoEle.jsp">Nueva Reserva</a></li>
            <li class="divider"></li>
           <li><a href="reservas.jsp">Lista Reserva</a></li>
           <li class="divider"></li>
@@ -105,7 +105,7 @@
 					<td><%=bt.getNombre() %><input type="hidden" name= "nombre" value = "<%=bt.getNombre() %>"></td>
 					<td><%=bt.getCantReservasPendientes() %><input type="hidden" name= "cantReservasPendientes" value = "<%=bt.getCantReservasPendientes() %>"></td>
 					<td>
-   					<button type="submit" class="btn btn-default btn-sm" id="deleteBtn">Seleccionar</button>
+   					<button type="submit" class="btn btn-default btn-sm" id="deleteBtn">SELECCIONAR</button>
 	
 					</td>
 				</tr>

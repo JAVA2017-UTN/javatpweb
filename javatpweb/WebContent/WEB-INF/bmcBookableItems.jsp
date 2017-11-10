@@ -72,7 +72,7 @@
           Reservas <b class="caret"></b>
         </a>
         <ul class="dropdown-menu">
-          <li><a href="altaReserva.jsp">Nueva Reserva</a></li>
+          <li><a href="seleccionTipoEle.jsp">Nueva Reserva</a></li>
            <li class="divider"></li>
           <li><a href="reservas.jsp">Lista Reserva</a></li>
           <li class="divider"></li>
