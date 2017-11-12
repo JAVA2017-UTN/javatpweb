@@ -74,7 +74,7 @@
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="#">Bienvenido al club <%=((People)session.getAttribute("user")).getNombre() %></a></li>
+      <li><a href="#">Bienvenido/a al sistema <%=((People)session.getAttribute("user")).getNombre() %></a></li>
       </li>
     </ul>
   </div>
