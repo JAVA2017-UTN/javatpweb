@@ -104,7 +104,7 @@
 
                  	for(BookableTypes bt: booktypes){
                  	%>
-                 	<option value="<%=bt.getId()%>"><%=bt.getNombre()%></option>
+                 	<option value="<%=bt.getId()%>"<%if(bt.getId() == ((BookableItems)request.getAttribute("bi")).getId_tipoElemento()){ %> Selected = "selected"> <%} %> <%=bt.getNombre()%></option>
 
       				<%} %>
                	</select>
