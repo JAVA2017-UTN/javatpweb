@@ -11,6 +11,7 @@ public class People implements Serializable {
 	private String contrasenia;
 	private boolean estado;
 	private int id;
+	private int tipo_usuario;
 
 	
 	public People() {
@@ -22,7 +23,7 @@ public class People implements Serializable {
 	estado = false;
 	}
 	
-	public void setPeople(Integer idNum, String dniNum, String nom, String ape, String usu, String con, boolean est) {
+	public void setPeople(Integer idNum, String dniNum, String nom, String ape, String usu, String con, boolean est, int tipo_usu) {
 		id=idNum;
 		dni = dniNum;
 		nombre = nom;
@@ -30,6 +31,7 @@ public class People implements Serializable {
 		usuario = usu;
 		contrasenia = con;
 		estado = est;
+		tipo_usuario = tipo_usu;
 	}
 	
 	
@@ -90,6 +92,14 @@ public class People implements Serializable {
 
 	public void setContrasenia(String contrasenia) {
 		this.contrasenia = contrasenia;
+	}
+
+	public int getTipo_usuario() {
+		return tipo_usuario;
+	}
+
+	public void setTipo_usuario(int tipo_usuario) {
+		this.tipo_usuario = tipo_usuario;
 	}
 
 }
