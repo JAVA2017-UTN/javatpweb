@@ -28,6 +28,8 @@ public class DataBookableTypes {
 							bt.setId(Integer.parseInt(rs.getString("id")));
 							bt.setNombre(rs.getString("nombre"));
 							bt.setCantReservasPendientes(Integer.parseInt(rs.getString("cantReservasPendientes")));
+							bt.setDias(Integer.parseInt(rs.getString("dias_antic")));
+							bt.setLimite(rs.getTime("limite_horas"));
 							booktypes.add(bt);
 				}
 			}
@@ -129,6 +131,8 @@ public class DataBookableTypes {
 					bt.setId(Integer.parseInt(rs.getString("id")));
 					bt.setNombre(rs.getString("nombre"));
 					bt.setCantReservasPendientes(Integer.parseInt(rs.getString("cantReservasPendientes")));
+					bt.setDias(Integer.parseInt(rs.getString("dias_antic")));
+					bt.setLimite(rs.getTime("limite_horas"));
 			}
 			
 		} catch (Exception e) {
@@ -152,11 +156,13 @@ public class DataBookableTypes {
 		try {
 			stmt=FactoryConexion.getInstancia().getConn()
 					.prepareStatement(
-					"insert into bookable_types(nombre, cantReservasPendientes) values (?,?)",
+					"insert into bookable_types(nombre, cantReservasPendientes, limite_horas, dias_antic) values (?,?,?,?)",
 					PreparedStatement.RETURN_GENERATED_KEYS
 					);
 			stmt.setString(1, bt.getNombre());
 			stmt.setString(2, String.valueOf((bt.getCantReservasPendientes())));
+			stmt.setTime(3, bt.getLimite());
+			stmt.setInt(4, bt.getDias());
 			stmt.executeUpdate();
 			keyResultSet=stmt.getGeneratedKeys();
 			if(keyResultSet!=null && keyResultSet.next()){
@@ -188,6 +194,8 @@ public class DataBookableTypes {
 					bt.setId(Integer.parseInt(rs.getString("id")));
 					bt.setNombre(rs.getString("nombre"));
 					bt.setCantReservasPendientes(Integer.parseInt(rs.getString("cantReservasPendientes")));
+					bt.setDias(Integer.parseInt(rs.getString(("dias_antic"))));
+					bt.setLimite(rs.getTime("limite_horas"));
 			}
 			
 		} catch (Exception e) {
@@ -230,12 +238,14 @@ public class DataBookableTypes {
 		try {
 			stmt=FactoryConexion.getInstancia().getConn()
 					.prepareStatement(
-					"UPDATE bookable_types SET nombre=? , cantReservasPendientes=? where id=? "
+					"UPDATE bookable_types SET nombre=? , cantReservasPendientes=?, limite_horas=?, dias_antic=? where id=? "
 					);
 			
 			stmt.setString(1, bt.getNombre());
 			stmt.setString(2, String.valueOf(bt.getCantReservasPendientes()));
-			stmt.setString(3, String.valueOf(bt.getId()));
+			stmt.setTime(3, bt.getLimite());
+			stmt.setInt(4, bt.getDias());
+			stmt.setString(5, String.valueOf(bt.getId()));
 			stmt.execute();
 		} catch (SQLException | AppDataException e) {
 			throw e;

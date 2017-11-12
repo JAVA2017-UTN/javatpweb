@@ -25,7 +25,7 @@ public class DataPeople {
 				while(rs.next()){
 					People p=new People();
 					p.setPeople(Integer.parseInt(rs.getString("id")), rs.getString("dni"), rs.getString("nombre"), rs.getString("apellido"), rs.getString("usuario"),
-							rs.getString("contrasenia"), rs.getBoolean("estado"));
+							rs.getString("contrasenia"), rs.getBoolean("estado"), rs.getInt("tipo_usuario"));
 					pers.add(p);
 				}
 			}
@@ -56,13 +56,13 @@ public class DataPeople {
 		ResultSet rs=null;
 		try {
 			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
-					"select id, nombre, apellido, dni, usuario, contrasenia, estado  from people where dni=?");
+					"select id, nombre, apellido, dni, usuario, contrasenia, estado, tipo_usuario  from people where dni=?");
 			stmt.setString(1, per.getDni());
 			rs=stmt.executeQuery();
 			if(rs!=null && rs.next()){
 					p=new People();
 					p.setPeople(Integer.parseInt(rs.getString("id")),rs.getString("dni"), rs.getString("nombre"), rs.getString("apellido"), rs.getString("usuario"),
-							rs.getString("contrasenia"), rs.getBoolean("estado"));
+							rs.getString("contrasenia"), rs.getBoolean("estado"), rs.getInt("tipo_usuario"));
 			}
 			
 		} catch (Exception e) {
@@ -85,14 +85,14 @@ public class DataPeople {
 		ResultSet rs = null;
 		try {
 			stmt = FactoryConexion.getInstancia().getConn().prepareStatement(
-					"select id, nombre, apellido, dni, usuario, contrasenia, estado  from people where usuario=? and contrasenia=?");
+					"select id, nombre, apellido, dni, usuario, contrasenia, estado, tipo_usuario  from people where usuario=? and contrasenia=?");
 			stmt.setString(1, per.getUsuario());
 			stmt.setString(2, per.getContrasenia());
 			rs = stmt.executeQuery();
 			if(rs != null && rs.next()) {
 				p = new People();
 				p.setPeople(Integer.parseInt(rs.getString("id")), rs.getString("dni"), rs.getString("nombre"), rs.getString("apellido"), rs.getString("usuario"),
-						rs.getString("contrasenia"), rs.getBoolean("estado"));
+						rs.getString("contrasenia"), rs.getBoolean("estado"), rs.getInt("tipo_usuario"));
 			}
 		} catch (Exception e) {
 			throw e;
@@ -162,7 +162,7 @@ public class DataPeople {
 		try {
 			stmt=FactoryConexion.getInstancia().getConn()
 					.prepareStatement(
-					"insert into people(dni, nombre, apellido, usuario, contrasenia, estado) values (?,?,?,?,?,?)",
+					"insert into people(dni, nombre, apellido, usuario, contrasenia, estado, tipo_usuario) values (?,?,?,?,?,?,?)",
 					PreparedStatement.RETURN_GENERATED_KEYS
 					);
 			stmt.setString(1, p.getDni());
@@ -171,6 +171,7 @@ public class DataPeople {
 			stmt.setString(4, p.getUsuario());
 			stmt.setString(5, p.getContrasenia());
 			stmt.setBoolean(6, p.isHabilitado());
+			stmt.setInt(7, p.getTipo_usuario());
 			stmt.executeUpdate();
 			keyResultSet=stmt.getGeneratedKeys();
 			if(keyResultSet!=null && keyResultSet.next()){
