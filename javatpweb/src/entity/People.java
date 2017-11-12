@@ -34,6 +34,20 @@ public class People implements Serializable {
 		tipo_usuario = tipo_usu;
 	}
 	
+	public String getTipo_usuario_String() {
+		String respuesta = null;
+		if(this.tipo_usuario == 0) {
+			respuesta = "Admin";
+		}
+		if(this.tipo_usuario == 1) {
+			respuesta = "Encargado";
+		}
+		
+		if(this.tipo_usuario == 2) {
+			respuesta = "Usuario";
+		}
+		return respuesta;
+	}
 	
 	public String getDni() {
 		return dni;

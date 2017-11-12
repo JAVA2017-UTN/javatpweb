@@ -45,6 +45,7 @@ public class SeleccionaPersona extends HttpServlet {
 			String pass = request.getParameter("contra");
 			String nombre = request.getParameter("nombre");
 			String apellido = request.getParameter("apellido");
+			String tipo_usu = request.getParameter("tipo_usuario");
 			Boolean estadoForm = Boolean.parseBoolean(request.getParameter("estado"));
 			boolean estado;
 			if (estadoForm) {
@@ -62,6 +63,7 @@ public class SeleccionaPersona extends HttpServlet {
 			per.setEstado(estado);
 			per.setUsuario(user);
 			per.setContrasenia(pass);
+			per.setTipo_usuario(Integer.parseInt(tipo_usu));
 			try {
 				request.setAttribute("persona", per);
 			} catch (Exception e) {
