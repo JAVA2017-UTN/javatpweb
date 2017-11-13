@@ -10,18 +10,21 @@
     <link rel="icon" href="http://getbootstrap.com/favicon.ico">
     <title>Login</title>
     <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/stylesPropios.css" rel="stylesheet">
   </head>
   <body>
     <div class="container">
-      <form class="form-signin" name="signin" action="login" method="post">
-        <h2 class="form-signin-heading">Login</h2>
-        <label for="inputUser" class="sr-only">User</label>
-        <input name="user" id="inputUser" class="form-control" placeholder="User" required="" autofocus="" type="">
-        <label for="inputPass" class="sr-only">Password</label>
-        <input name="pass" id="inputPass" class="form-control" placeholder="Password" required="" type="Password">
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Log In</button>
-      </form>
-
+   		<div class="login">
+			<form class="form-signin" name="signin" action="login" method="post">
+			  <h2 class="form-signin-heading">Login</h2>
+			  <hr>
+			  <label for="inputUser" class="sr-only">User</label>
+			  <input name="user" id="inputUser" class="form-control login-form" placeholder="User" required autofocus="true" type="text">
+			  <label for="inputPass" class="sr-only">Password</label>
+			  <input name="pass" id="inputPass" class="form-control login-form" placeholder="Password" required="" type="Password" required>
+			  <button class="btn btn-lg btn-primary btn-block login-form" type="submit">Log In</button>
+			</form>
+		</div>
     </div>
 </body>
 </html>
