@@ -29,18 +29,25 @@
          <div class="form-group">
              <input type="text" class="form-control" name="apellido" placeholder="Apellido..." required>
          </div>
-	<div class="form-group">
-                 <input type="text" class="form-control" name="usuario" placeholder="Usuario del usuario..." required>
-             </div>
-             <div class="form-group">
-                 <input type="password" class="form-control" name="contrasenia" placeholder="Contraseña del usuario..." required>
-             </div>
-             <div class="form-group">
-                 <select name="estado" class="form-control">
-                     <option value="1">Habilitado</option>
-		<option value="0">No Habilitado</option>
-       </select>
-        </div>
+		 <div class="form-group">
+              <input type="text" class="form-control" name="usuario" placeholder="Usuario del usuario..." required>
+         </div>
+          <div class="form-group">
+              <input type="password" class="form-control" name="contrasenia" placeholder="Contraseña del usuario..." required>
+          </div>
+          <div class="form-group">
+             <select name="estado" class="form-control">
+                <option value="1">Habilitado</option>
+				<option value="0">No Habilitado</option>
+       		 </select>
+       	   </div>
+           <div class="form-group">
+             <select name="tipo_usuario" class="form-control">
+                <option value="0">Admin</option>
+				<option value="1">Encargado</option>
+				<option value="2">Usuario</option>
+       		 </select>
+       	   </div>
         <div class="form-group">
             <button type="reset" value="Reset" class="btn btn-default" >Limpiar</button>
             <input type="submit" class="btn btn-primary pull-right" name="submit" value="Cargar usuario">

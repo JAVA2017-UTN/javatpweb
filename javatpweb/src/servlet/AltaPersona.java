@@ -45,8 +45,9 @@ public class AltaPersona extends HttpServlet {
 			String nombre = request.getParameter("nombre");
 			String apellido = request.getParameter("apellido");
 			String estadoForm = request.getParameter("estado");
+			String tipo_usu = request.getParameter("tipo_usuario");
 			boolean estado = true;
-			if (estadoForm == "1") {
+			if (estadoForm.equals("1")) {
 				estado = true;
 			}
 			else {
@@ -60,6 +61,7 @@ public class AltaPersona extends HttpServlet {
 			per.setEstado(estado);
 			per.setUsuario(user);
 			per.setContrasenia(pass);
+			per.setTipo_usuario(Integer.parseInt(tipo_usu));
 			try {
 				ctrl.add(per);
 			} catch (AppDataException ade) {

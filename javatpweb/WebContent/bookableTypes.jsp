@@ -19,7 +19,7 @@
 <body>
 
 	<div class="container">
-		 <div class="col-md-6 col-md-offset-1">
+		 <div class="col-md-12 col-md-offset-1">
 			<h1>Lista de Tipos de Elementos</h1>
 			<br>
 		<table class="table table-hover">
@@ -27,6 +27,9 @@
 					<th>Id</th>
 					<th>Nombre</th>
 					<th>Cant. Maxima de Reservas</th>
+					<th>Límite Horas</th>
+					<th>Dias Anticipados</th>
+					<th>Requiere Encargado</th>
 				</tr>
 				<%
 					CtrlBookingTypes ctrl= new CtrlBookingTypes();
@@ -38,8 +41,11 @@
 					<td><%=bt.getId() %><input type="hidden" name= "id" value = "<%=bt.getId() %>"></td>
 					<td><%=bt.getNombre() %><input type="hidden" name= "nombre" value = "<%=bt.getNombre() %>"></td>
 					<td><%=bt.getCantReservasPendientes() %><input type="hidden" name= "cantReservasPendientes" value = "<%=bt.getCantReservasPendientes() %>"></td>
+					<td><%=bt.getLimite() %><input type="hidden" name= "limite" value = "<%=bt.getLimite() %>"></td>
+					<td><%=bt.getDias() %><input type="hidden" name= "dias" value = "<%=bt.getDias() %>"></td>
+					<td><%=bt.isReq_encargado() %><input type="hidden" name= "req_encargado" value = "<%=bt.isReq_encargado() %>"></td>
 					<td>
-   					<button type="submit" class="btn btn-default btn-sm" id="deleteBtn">SELECCIONAR</button>
+   					<button type="submit" class="btn btn-default btn-sm" id="selectButton">SELECCIONAR</button>
 	
 					</td>
 				</tr>

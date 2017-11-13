@@ -29,7 +29,8 @@ public class DataBookableTypes {
 							bt.setNombre(rs.getString("nombre"));
 							bt.setCantReservasPendientes(Integer.parseInt(rs.getString("cantReservasPendientes")));
 							bt.setDias(Integer.parseInt(rs.getString("dias_antic")));
-							bt.setLimite(rs.getTime("limite_horas"));
+							bt.setLimite(Integer.parseInt(rs.getString("limite_horas")));
+							bt.setReq_encargado(rs.getBoolean("req_encargado"));
 							booktypes.add(bt);
 				}
 			}
@@ -132,7 +133,8 @@ public class DataBookableTypes {
 					bt.setNombre(rs.getString("nombre"));
 					bt.setCantReservasPendientes(Integer.parseInt(rs.getString("cantReservasPendientes")));
 					bt.setDias(Integer.parseInt(rs.getString("dias_antic")));
-					bt.setLimite(rs.getTime("limite_horas"));
+					bt.setLimite(Integer.parseInt(rs.getString("limite_horas")));
+					bt.setReq_encargado(rs.getBoolean("req_encargado"));
 			}
 			
 		} catch (Exception e) {
@@ -156,13 +158,14 @@ public class DataBookableTypes {
 		try {
 			stmt=FactoryConexion.getInstancia().getConn()
 					.prepareStatement(
-					"insert into bookable_types(nombre, cantReservasPendientes, limite_horas, dias_antic) values (?,?,?,?)",
+					"insert into bookable_types(nombre, cantReservasPendientes, limite_horas, dias_antic, req_encargado) values (?,?,?,?,?)",
 					PreparedStatement.RETURN_GENERATED_KEYS
 					);
 			stmt.setString(1, bt.getNombre());
 			stmt.setString(2, String.valueOf((bt.getCantReservasPendientes())));
-			stmt.setTime(3, bt.getLimite());
+			stmt.setInt(3, bt.getLimite());
 			stmt.setInt(4, bt.getDias());
+			stmt.setBoolean(5, bt.isReq_encargado());
 			stmt.executeUpdate();
 			keyResultSet=stmt.getGeneratedKeys();
 			if(keyResultSet!=null && keyResultSet.next()){
@@ -195,7 +198,8 @@ public class DataBookableTypes {
 					bt.setNombre(rs.getString("nombre"));
 					bt.setCantReservasPendientes(Integer.parseInt(rs.getString("cantReservasPendientes")));
 					bt.setDias(Integer.parseInt(rs.getString(("dias_antic"))));
-					bt.setLimite(rs.getTime("limite_horas"));
+					bt.setLimite(Integer.parseInt(rs.getString("limite_horas")));
+					bt.setReq_encargado(rs.getBoolean("req_encargado"));
 			}
 			
 		} catch (Exception e) {
@@ -238,14 +242,15 @@ public class DataBookableTypes {
 		try {
 			stmt=FactoryConexion.getInstancia().getConn()
 					.prepareStatement(
-					"UPDATE bookable_types SET nombre=? , cantReservasPendientes=?, limite_horas=?, dias_antic=? where id=? "
+					"UPDATE bookable_types SET nombre=? , cantReservasPendientes=?, limite_horas=?, dias_antic=?, req_encargado=? where id=? "
 					);
 			
 			stmt.setString(1, bt.getNombre());
 			stmt.setString(2, String.valueOf(bt.getCantReservasPendientes()));
-			stmt.setTime(3, bt.getLimite());
+			stmt.setInt(3, bt.getLimite());
 			stmt.setInt(4, bt.getDias());
-			stmt.setString(5, String.valueOf(bt.getId()));
+			stmt.setBoolean(5, bt.isReq_encargado());
+			stmt.setString(6, String.valueOf(bt.getId()));
 			stmt.execute();
 		} catch (SQLException | AppDataException e) {
 			throw e;

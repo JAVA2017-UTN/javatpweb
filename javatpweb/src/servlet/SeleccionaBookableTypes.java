@@ -1,6 +1,8 @@
 package servlet;
 
 import java.io.IOException;
+import java.sql.Time;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -43,6 +45,16 @@ public class SeleccionaBookableTypes extends HttpServlet {
 			String id = request.getParameter("id");
 			String nombre = request.getParameter("nombre");
 			String cantReservasPendientes = request.getParameter("cantReservasPendientes");
+			String estadoForm = request.getParameter("req_encargado");
+			boolean req_encargado = true;
+			if (estadoForm.equals("true")) {
+				req_encargado = true;
+			}
+			else {
+				req_encargado = false;
+			}
+			String limite = request.getParameter("limite");
+			String dias = request.getParameter("dias");
 			
 	
 			CtrlBookingTypes ctrl = new CtrlBookingTypes();
@@ -50,12 +62,11 @@ public class SeleccionaBookableTypes extends HttpServlet {
 			BookableTypes bt = new BookableTypes();
 			
 			bt.setId(Integer.parseInt((id)));
-			try{
-				bt.setNombre(nombre);
-			} catch (Exception e){
-				request.setAttribute("Error", e.getMessage());
-			}
+			bt.setNombre(nombre);
 			bt.setCantReservasPendientes(Integer.parseInt(cantReservasPendientes));
+			bt.setDias(Integer.parseInt(dias));
+			bt.setLimite(Integer.parseInt(limite));
+			bt.setReq_encargado(req_encargado);
 			
 			try {
 				request.setAttribute("bt", bt);

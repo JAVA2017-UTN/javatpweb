@@ -47,6 +47,7 @@ public class ModificarPersona extends HttpServlet {
 				String nombre = request.getParameter("nombre");
 				String apellido = request.getParameter("apellido");
 				String estadoForm = request.getParameter("estado");
+				String tipo_usu = request.getParameter("tipo_usuario");
 				boolean estado = true;
 				if (estadoForm.equals("1")) {
 					estado = true;
@@ -63,6 +64,7 @@ public class ModificarPersona extends HttpServlet {
 				per.setEstado(estado);
 				per.setUsuario(user);
 				per.setContrasenia(pass);
+				per.setTipo_usuario(Integer.parseInt(tipo_usu));
 				try {
 					ctrl.update(per);
 				} catch (AppDataException ade) {
@@ -79,6 +81,7 @@ public class ModificarPersona extends HttpServlet {
 				String nombre = request.getParameter("nombre");
 				String apellido = request.getParameter("apellido");
 				String estadoForm = request.getParameter("estado");
+				String tipo_usu = request.getParameter("tipo_usuario");
 				boolean estado = true;
 				if (estadoForm == "1") {
 					estado = true;
@@ -95,6 +98,7 @@ public class ModificarPersona extends HttpServlet {
 				per.setEstado(estado);
 				per.setUsuario(user);
 				per.setContrasenia(pass);
+				per.setTipo_usuario(Integer.parseInt(tipo_usu));
 				try {
 					ctrl.delete(per);
 				} catch (AppDataException ade) {

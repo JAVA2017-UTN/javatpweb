@@ -49,7 +49,7 @@
 						<td><%=p.getUsuario() %><input type="hidden" name="user" value="<%=p.getUsuario() %>"></td>
 						<td><%=p.getContrasenia() %><input type="hidden" name="contra" value="<%=p.getContrasenia() %>"></td>
 						<td><%=p.isHabilitado() %><input type="hidden" name="estado" value="<%=p.isHabilitado() %>"></td>
-						<td><%=p.getTipo_usuario_String() %><input type="hidden" name="tipo_usu" value="<%=p.getTipo_usuario() %>"></td>
+						<td><%=p.getTipo_usuario_String() %><input type="hidden" name="tipo_usuario" value="<%=p.getTipo_usuario() %>"></td>
 						<td><button type="submit" class="btn btn-default btn-sm">SELECCIONAR</button></td>
 					</tr>
 				</form>

@@ -28,8 +28,30 @@
              <input type="text" class="form-control" name="nombre" placeholder="Nombre..." required value = "<%=((BookableTypes)request.getAttribute("bt")).getNombre() %>">
          </div>
          <div class="form-group">
-             <input type="text" class="form-control" name="cantReservasPendientes" placeholder="Cant. Reservas Pendientes..." required value = "<%=((BookableTypes)request.getAttribute("bt")).getCantReservasPendientes() %>">
+             <input type="number" class="form-control" name="cantReservasPendientes" placeholder="Cant. Reservas Pendientes..." required value = "<%=((BookableTypes)request.getAttribute("bt")).getCantReservasPendientes() %>">
         </div>
+			<div class="form-group">
+		   		<input type="number" class="form-control" name="limite" placeholder="Límite Horas..." required value = "<%=((BookableTypes)request.getAttribute("bt")).getLimite() %>">
+			</div>
+         <div class="form-group">
+             <input type="number" class="form-control" name="dias" placeholder="Dias Anticipados..." required value = "<%=((BookableTypes)request.getAttribute("bt")).getDias() %>">
+         </div>
+          <div class="form-group">
+             <select name="req_encargado" class="form-control">
+             <% if(((BookableTypes)request.getAttribute("bt")).isReq_encargado()) {
+                	 %>
+                 	<option value="1" selected="selected">Requiere</option>
+ 					<option value="0">No Requiere</option>
+                <%  }
+                 else {
+                 %>
+                  	<option value="1">Requiere</option>
+ 					<option value="0" selected="selected">No Requiere</option>                
+                 <%
+                 } 
+                 %>   
+       		 </select>
+       	   </div>
         <div class="form-group">
             
            	<input type="submit" class="btn btn-primary pull-left" name="eliminar" value="Eliminar">

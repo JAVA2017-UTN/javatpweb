@@ -17,16 +17,28 @@
 
 
 <div class="container">
- <div class="col-md-6 col-md-offset-1">
+ <div class="col-md-8 col-md-offset-1">
      <h1>Alta de un nuevo tipo de elemento</h1>
      <hr>
-     <form class="form-group" action="AltaBookableTypes" method="post">
+     <form class="form-group" action="BookableTypesServlet" method="post">
          <div class="form-group">
              <input type="text" class="form-control" name="nombre" placeholder="Nombre..." required>
          </div>
          <div class="form-group">
-             <input type="text" class="form-control" name="cantReservasPendientes" placeholder="Cant. Reservas Pendientes..." required>
+             <input type="number" class="form-control" name="cantReservasPendientes" placeholder="Cant. Reservas Pendientes..." required>
          </div>
+			<div class="form-group">
+		   		<input type="number" class="form-control" name="limite" placeholder="Límite Horas..." required>
+			</div>
+         <div class="form-group">
+             <input type="number" class="form-control" name="dias" placeholder="Dias Anticipados..." required>
+         </div>
+          <div class="form-group">
+             <select name="req_encargado" class="form-control">
+                <option value="1">Requiere</option>
+				<option value="0">No Requiere</option>
+       		 </select>
+       	   </div>
         <div class="form-group">
             <button type="reset" value="Reset" class="btn btn-default" >Limpiar</button>
             <input type="submit" class="btn btn-primary pull-right" name="submit" value="Cargar tipo de Elemento">
