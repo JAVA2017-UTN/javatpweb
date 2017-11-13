@@ -37,7 +37,7 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-try {
+		try {
 			
 			String user=request.getParameter("user");
 			String pass=request.getParameter("pass");
@@ -48,20 +48,18 @@ try {
 			
 			CtrlABMPeople ctrl= new CtrlABMPeople();
 			
-			People pers=ctrl.validaUsuario(per);
-			
 			try {
-				request.setAttribute("listaPersonas", ctrl.getAll());
+				request.getSession().setAttribute("user", ctrl.validaUsuario(per));								
 			} catch (AppDataException ade) {
 				request.setAttribute("Error", ade.getMessage());
 			} catch (Exception e) {
 				response.setStatus(502);
 			}
-			
-			request.getSession().setAttribute("user", pers);
-			
-			request.getRequestDispatcher("WEB-INF/welcome.jsp").forward(request, response);
-			
+			try {
+				request.getRequestDispatcher("WEB-INF/welcome.jsp").forward(request, response);												
+			} catch (Exception e) {
+				request.getRequestDispatcher("WEB-INF/errorLogueo.jsp").forward(request, response);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

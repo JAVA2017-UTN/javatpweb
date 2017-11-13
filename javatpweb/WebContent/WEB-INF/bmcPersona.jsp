@@ -122,6 +122,31 @@
        		</select>
         </div>
         <div class="form-group">
+                 <select name="tipo_usuario" class="form-control">
+                 <% if(((People)request.getAttribute("persona")).getTipo_usuario() == 0) {
+                	 %>
+                 	<option value="0" selected="selected">Admin</option>
+ 					<option value="1">Encargado</option>
+ 					<option value="2">Usuario</option>
+                <%  }
+                 else if(((People)request.getAttribute("persona")).getTipo_usuario() == 1) {
+                 %>
+                 	<option value="0">Admin</option>
+ 					<option value="1" selected="selected">Encargado</option>
+ 					<option value="2">Usuario</option>               
+                 <%
+                 }
+                 else if(((People)request.getAttribute("persona")).getTipo_usuario() == 2) {
+                 %>
+                 	<option value="0">Admin</option>
+ 					<option value="1" >Encargado</option>
+ 					<option value="2" selected="selected">Usuario</option> 
+                 <%
+                 }
+                 %>          
+       		</select>
+        </div>
+        <div class="form-group">
             <input type="submit" value="Eliminar" class="btn btn-danger" name="eliminar">
             <input type="submit" class="btn btn-primary pull-right" name="modificar" value="Modificar">
         </div>

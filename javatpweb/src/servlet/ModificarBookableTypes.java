@@ -41,19 +41,28 @@ public class ModificarBookableTypes extends HttpServlet {
 		
 		try {
 			if(request.getParameter("modificar") != null){
+				
 				String id = request.getParameter("id");
 				String nombre = request.getParameter("nombre");
 				String cantReservasPendientes = request.getParameter("cantReservasPendientes");
-			
-				
+				String estadoForm = request.getParameter("req_encargado");
+				boolean req_encargado = true;
+				if (estadoForm.equals("1")) {
+					req_encargado = true;
+				}
+				else {
+					req_encargado = false;
+				}
+				String limite = request.getParameter("limite");
+				String dias = request.getParameter("dias");
 				CtrlBookingTypes ctrl = new CtrlBookingTypes();
-				
 				BookableTypes bt = new BookableTypes();
-				
-				bt.setId(Integer.parseInt((id)));
 				bt.setNombre(nombre);
 				bt.setCantReservasPendientes(Integer.parseInt(cantReservasPendientes));
-				
+				bt.setDias(Integer.parseInt(dias));
+				bt.setLimite(Integer.parseInt(limite));
+				bt.setReq_encargado(req_encargado);
+				bt.setId(Integer.parseInt((id)));
 				try {
 					ctrl.update(bt);
 				} catch (AppDataException ade) {
@@ -63,19 +72,28 @@ public class ModificarBookableTypes extends HttpServlet {
 				}
 			}
 			if(request.getParameter("eliminar") != null){
+				
 				String id = request.getParameter("id");
 				String nombre = request.getParameter("nombre");
 				String cantReservasPendientes = request.getParameter("cantReservasPendientes");
-			
-				
+				String estadoForm = request.getParameter("req_encargado");
+				boolean req_encargado = true;
+				if (estadoForm.equals("1")) {
+					req_encargado = true;
+				}
+				else {
+					req_encargado = false;
+				}
+				String limite = request.getParameter("limite");
+				String dias = request.getParameter("dias");
 				CtrlBookingTypes ctrl = new CtrlBookingTypes();
-				
 				BookableTypes bt = new BookableTypes();
-				
-				bt.setId(Integer.parseInt((id)));
 				bt.setNombre(nombre);
 				bt.setCantReservasPendientes(Integer.parseInt(cantReservasPendientes));
-				
+				bt.setDias(Integer.parseInt(dias));
+				bt.setLimite(Integer.parseInt(limite));
+				bt.setReq_encargado(req_encargado);
+				bt.setId(Integer.parseInt((id)));
 				try {
 					ctrl.delete(bt);
 				} catch (AppDataException ade) {

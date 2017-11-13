@@ -85,7 +85,7 @@ public class DataPeople {
 		ResultSet rs = null;
 		try {
 			stmt = FactoryConexion.getInstancia().getConn().prepareStatement(
-					"select id, nombre, apellido, dni, usuario, contrasenia, estado, tipo_usuario  from people where usuario=? and contrasenia=?");
+					"select id, nombre, apellido, dni, usuario, contrasenia, estado, tipo_usuario  from people where usuario=? and contrasenia=? and estado!=false");
 			stmt.setString(1, per.getUsuario());
 			stmt.setString(2, per.getContrasenia());
 			rs = stmt.executeQuery();
@@ -135,7 +135,7 @@ public class DataPeople {
 		try {
 			stmt=FactoryConexion.getInstancia().getConn()
 					.prepareStatement(
-					"UPDATE people SET dni=?, nombre=?, apellido=?, usuario=?, contrasenia=?, estado=? where id=? "
+					"UPDATE people SET dni=?, nombre=?, apellido=?, usuario=?, contrasenia=?, estado=?, tipo_usuario=? where id=? "
 					);
 			stmt.setString(1, p.getDni());
 			stmt.setString(2, p.getNombre());
@@ -143,7 +143,8 @@ public class DataPeople {
 			stmt.setString(4, p.getUsuario());
 			stmt.setString(5, p.getContrasenia());
 			stmt.setBoolean(6, p.isHabilitado());
-			stmt.setString(7, String.valueOf(p.getId()));
+			stmt.setInt(7, p.getTipo_usuario());
+			stmt.setString(8, String.valueOf(p.getId()));
 			stmt.execute();
 		} catch (SQLException | AppDataException e) {
 			throw e;
