@@ -4,6 +4,7 @@
 <%@page import="controllers.CtrlABMPeople"%>
 
 <%@ include file="navbar.jsp" %>
+<%@ include file="control.jsp" %>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -12,12 +13,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Lista Persona</title>
-<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 </head>
 <body>
-
 	<div class="container">
 		 <div class="col-md-12 col-md-offset-1">
 			<h1>Lista de Personas</h1>
