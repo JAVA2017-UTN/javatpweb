@@ -2,12 +2,23 @@
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<% session = request.getSession();
+	People user = (People)session.getAttribute("user");
+if(user == null) {
+	%><jsp:forward page="login.html" /><%
+}
+else {
+	%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Home</title>
+    <link href="css/stylesPropios.css" rel="stylesheet">
 </head>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/stylesPropios.css">
 <body>
 
 	<nav class="navbar navbar-default" role="navigation">
@@ -28,6 +39,9 @@
        otro elemento que se pueda ocultar al minimizar la barra -->
   <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav">
+    <% if(((People)session.getAttribute("user")).getTipo_usuario() == 0) 
+    {
+    %>
           <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
           Personas <b class="caret"></b>
@@ -61,6 +75,9 @@
           <li class="divider"></li>
         </ul>
       </li>
+      <%
+      }
+      %>
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
           Reservas <b class="caret"></b>
@@ -74,11 +91,13 @@
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="#">Bienvenido/a al sistema <%=((People)session.getAttribute("user")).getNombre() %></a></li>
-      </li>
+      <li><a>Bienvenido/a al sistema<span class="nombre-usuario"> <%=((People)session.getAttribute("user")).getNombre() %></span></a></li>
+      <li><a href="LogoutServlet" class="btn-sesion">Cerrar Sesión</a></li>
     </ul>
   </div>
 </nav>
 
 </body>
 </html>
+<% }
+%>

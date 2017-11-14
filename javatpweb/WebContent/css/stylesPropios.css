@@ -13,3 +13,10 @@
 .login-form {
 	margin-top: 5%;
 }
+.nombre-usuario {
+	font-style: italic;
+	font-weight: bold;
+}
+.btn-sesion {
+	border: medium;
+}
