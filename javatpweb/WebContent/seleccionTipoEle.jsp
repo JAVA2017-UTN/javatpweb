@@ -7,6 +7,7 @@
 <%@page import="controllers.CtrlBookableItems" %>
 
 <%@ include file="navbar.jsp" %>
+<%@ include file="controlReserva.jsp" %>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -32,10 +33,20 @@
                  <% 
                  CtrlBookingTypes ctrl = new CtrlBookingTypes();
                  ArrayList<BookableTypes> listbt = ctrl.getAll();
-                 for(BookableTypes bt : listbt) {
+                 ArrayList<BookableTypes> listaReduc = ctrl.getAllReduc();
+                 if(((People)session.getAttribute("user")).getTipo_usuario() == 1) {
+                 	for(BookableTypes bt : listbt) {
                  %>
                  	<option value="<%=bt.getId() %>"><%=bt.getNombre()%></option>
                  <%
+                 }
+                 }
+                 else {
+                	 for(BookableTypes lr : listaReduc) {
+                		 %>
+                      		<option value="<%=lr.getId() %>"><%=lr.getNombre()%></option>
+                      	<%
+                	 }
                  }
                  %>
 		       </select>

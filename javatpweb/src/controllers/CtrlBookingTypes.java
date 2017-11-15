@@ -51,6 +51,11 @@ public class CtrlBookingTypes {
 		return databt.getAll();
 	}
 	
+	public ArrayList<BookableTypes> getAllReduc()throws Exception{
+
+		return databt.getAllReduc();
+	}
+	
 	public ArrayList<String> getAllNames()throws Exception{
 		return databt.getAllNames();
 	}

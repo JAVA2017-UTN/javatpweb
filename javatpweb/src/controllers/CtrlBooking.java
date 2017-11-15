@@ -21,6 +21,10 @@ public class CtrlBooking {
 		dataBook.delete(id);
 	}
 	
+	public void anularById(int id) throws Exception {
+		dataBook.anularById(id);
+	}
+	
 	
 	public void update(Booking b) throws Exception {
 		dataBook.update(b);

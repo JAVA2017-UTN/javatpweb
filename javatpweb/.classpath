@@ -12,5 +12,6 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mysql-connector-java-3.1.14-bin.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v7.0"/>
+	<classpathentry kind="lib" path="D:/Users/mauri/eclipse/Librerias JAVA/javamail-1.4.5/mail.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
