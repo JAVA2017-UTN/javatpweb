@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import controllers.CtrlBooking;
 import entity.Booking;
 import util.AppDataException;
+import util.Emailer;
 
 /**
  * Servlet implementation class AltaReserva
@@ -56,6 +57,7 @@ public class AltaReserva extends HttpServlet {
 			bok.setId_elemento(id_ele);
 			bok.setId_tipoElemento(id_tipoEle);
 			bok.setId_persona(id_persona);
+			bok.setAnulada(false);
 			try {
 				ctrl.add(bok);
 			} catch (AppDataException ade) {
@@ -63,7 +65,7 @@ public class AltaReserva extends HttpServlet {
 			} catch (Exception e) {
 				response.setStatus(502);
 			}
-			
+			Emailer.getInstance().send("mauriminio96@gmail.com","Alta de reserva","Su reserva " +detalle +" para el dia " +fecha +" a las " +hora +" fue realizada con satisfacción.");
 			request.getRequestDispatcher("reservas.jsp").forward(request, response);
 			
 		} catch (Exception e) {

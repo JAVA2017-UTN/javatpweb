@@ -83,8 +83,13 @@ else {
           Reservas <b class="caret"></b>
         </a>
         <ul class="dropdown-menu">
+            <% if(((People)session.getAttribute("user")).getTipo_usuario() != 0) 
+			    {
+		    %>
           <li><a href="seleccionTipoEle.jsp">Nueva Reserva</a></li>
            <li class="divider"></li>
+           <% }
+			%>
           <li><a href="reservas.jsp">Lista Reserva</a></li>
           <li class="divider"></li>
         </ul>

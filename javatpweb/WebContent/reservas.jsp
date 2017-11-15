@@ -1,3 +1,8 @@
+<%@page import="java.time.chrono.ChronoLocalDate"%>
+<%@page import="java.time.LocalDateTime"%>
+<%@page import="org.omg.CORBA.CurrentOperations"%>
+<%@page import="java.sql.Date"%>
+<%@page import="java.sql.Timestamp"%>
 <%@page import="entity.People"%>
 <%@page import="entity.Booking"%>
 <%@page import="java.util.ArrayList"%>
@@ -20,6 +25,58 @@
 
 <div class="container">
 		 <div class="col-md-12 col-md-offset-1">
+		    <% if(((People)session.getAttribute("user")).getTipo_usuario() == 0) 
+			    {
+		    %>
+		    <h1><%=((People)session.getAttribute("user")).getNombre() %>, éstas son todas las reservas: </h1>
+			<br>
+			<table class="table table-hover">
+			   <tr>
+			   		<th>ID</th>
+					<th>Detalle</th>
+					<th>Fecha</th>
+					<th>Hora</th>
+					<th>ID Tipo Elemento</th>
+					<th>ID Elemento</th>
+					<th>ID Persona</th>
+					<th>Anulada</th>
+					<th></th>
+				</tr>
+				<%
+					CtrlBooking ctrl= new CtrlBooking();
+					ArrayList<Booking> bookings = ctrl.getList();
+					for(Booking b : bookings){
+				%>
+				<form method="POST" action="ModificarReserva">
+					<tr>
+						<td><%=b.getId() %><input type="hidden" name="id" value="<%=b.getId() %>"></td>
+						<td><%=b.getDetalle() %><input type="hidden" name="id" value="<%=b.getDetalle() %>"></td>
+						<td><%=b.getFecha() %><input type="hidden" name="id" value="<%=b.getFecha() %>"></td>
+						<td><%=b.getHora() %><input type="hidden" name="id" value="<%=b.getHora() %>"></td>
+						<td><%=b.getId_tipoElemento() %><input type="hidden" name="id" value="<%=b.getId_tipoElemento() %>"></td>
+						<td><%=b.getId_elemento() %><input type="hidden" name="id" value="<%=b.getId_elemento() %>"></td>
+						<td><%=b.getId_persona() %><input type="hidden" name="id" value="<%=b.getId_persona() %>"></td>
+						<td><%=b.isAnuladaString() %><input type="hidden" name="id" value="<%=b.isAnulada() %>"></td>
+						<%
+						LocalDateTime fecha = LocalDateTime.now();
+						if(!b.isAnulada()) 
+						{
+						%>
+						<td><button type="submit" class="btn btn-danger btn-sm" name="anular" value="Anular">ANULAR</button></td>
+						<% 
+						}
+						%>
+					</tr>
+				</form>
+				<%
+					}
+				%>
+			</table>
+			
+		    <% 
+		    } else {
+		    	
+			%>
 			<h1><%=((People)session.getAttribute("user")).getNombre() %> sus reservas son las siguientes: </h1>
 			<br>
 			<table class="table table-hover">
@@ -31,6 +88,7 @@
 					<th>ID Tipo Elemento</th>
 					<th>ID Elemento</th>
 					<th>ID Persona</th>
+					<th>Anulada</th>
 					<th></th>
 				</tr>
 				<%
@@ -39,7 +97,7 @@
 					ArrayList<Booking> bookings = ctrl.getReservasByPerson(id_pers);
 					for(Booking b : bookings){
 				%>
-				<form method="POST" action="EliminarReserva">
+				<form method="POST" action="ModificarReserva">
 					<tr>
 						<td><%=b.getId() %><input type="hidden" name="id" value="<%=b.getId() %>"></td>
 						<td><%=b.getDetalle() %><input type="hidden" name="id" value="<%=b.getDetalle() %>"></td>
@@ -48,13 +106,24 @@
 						<td><%=b.getId_tipoElemento() %><input type="hidden" name="id" value="<%=b.getId_tipoElemento() %>"></td>
 						<td><%=b.getId_elemento() %><input type="hidden" name="id" value="<%=b.getId_elemento() %>"></td>
 						<td><%=b.getId_persona() %><input type="hidden" name="id" value="<%=b.getId_persona() %>"></td>
-						<td><button type="submit" class="btn btn-danger btn-sm">ELIMINAR</button></td>
+						<td><%=b.isAnuladaString() %><input type="hidden" name="id" value="<%=b.isAnulada() %>"></td>
+						<%if(!b.isAnulada()) 
+						{
+							%>
+						<td><button type="submit" class="btn btn-danger btn-sm" name="eliminar" value="Eliminar">ELIMINAR</button></td>
+						<% 
+						}
+						%>
 					</tr>
 				</form>
 				<%
 					}
 				%>
 			</table>
+			
+			<% 
+			}
+			%>
 	</div>
 	</div>
 </body>

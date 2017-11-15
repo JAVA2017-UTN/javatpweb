@@ -11,15 +11,17 @@ public class Booking implements Serializable {
 	private int id_tipoElemento;
 	private int id_elemento;
 	private int id_persona;
+	private boolean anulada;
 	
 	public Booking() {
 		this.detalle = null;
 		this.fecha = null;
 		this.hora = null;
+		anulada = false;
 	}
 	
 	
-	public void setBooking(int id, String detalle, Date fecha, Time hora, int id_tipoElemento, int id_elemento, int id_persona) {
+	public void setBooking(int id, String detalle, Date fecha, Time hora, int id_tipoElemento, int id_elemento, int id_persona, boolean estado) {
 		this.id = id;
 		this.detalle = detalle;
 		this.fecha = fecha;
@@ -27,6 +29,7 @@ public class Booking implements Serializable {
 		this.id_tipoElemento = id_tipoElemento;
 		this.id_elemento = id_elemento;
 		this.id_persona = id_persona;
+		this.anulada = estado;
 	}
 
 
@@ -96,6 +99,26 @@ public class Booking implements Serializable {
 
 	public void setId_persona(int id_persona) {
 		this.id_persona = id_persona;
+	}
+
+
+	public boolean isAnulada() {
+		return anulada;
+	}
+	
+	public String isAnuladaString() {
+		String respuesta;
+		if(this.anulada) {
+			respuesta = "Si";
+		}
+		else {
+			respuesta = "No";
+		}
+		return respuesta;
+	}
+
+	public void setAnulada(boolean anulada) {
+		this.anulada = anulada;
 	}
 	
 	
