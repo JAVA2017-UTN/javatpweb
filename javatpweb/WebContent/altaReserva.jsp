@@ -25,7 +25,7 @@
  <div class="col-md-6 col-md-offset-1">
      <h1>Alta de una nueva reserva</h1>
      <hr>
-     <form class="form-group" action="AltaReserva" method="post">
+     <form class="form-group" action="AltaReserva" method="post" accept-charset=utf-8>
            	<div class="form-group">
 		   		<input type="hidden" class="form-control" name="tipo_elemento" value="<%=(Integer)session.getAttribute("id_tipoEle")%>">
 			</div>

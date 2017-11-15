@@ -35,9 +35,9 @@
 				<%
 					CtrlBookingTypes ctrl= new CtrlBookingTypes();
 					ArrayList<BookableTypes> listaBt= ctrl.getAll();
-					for(BookableTypes bt : listaBt){
-				%>
-				<form class="form-group" action="SeleccionaBookableTypes" method="post">
+					for(BookableTypes bt : listaBt){%>
+					
+				<form class="form-group" action="SeleccionaBookableTypes" method="post" accept-charset=utf-8>
 				<tr>
 					<td><%=bt.getId() %><input type="hidden" name= "id" value = "<%=bt.getId() %>"></td>
 					<td><%=bt.getNombre() %><input type="hidden" name= "nombre" value = "<%=bt.getNombre() %>"></td>

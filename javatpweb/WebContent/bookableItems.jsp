@@ -27,7 +27,7 @@
 			   <tr>
 					<th>Id</th>
 					<th>Nombre</th>
-					<th>Cant. Maxima de Reservas</th>
+					<th>Id de tipo de elemento</th>
 				</tr>
 				<%
 					CtrlBookableItems ctrl= new CtrlBookableItems();

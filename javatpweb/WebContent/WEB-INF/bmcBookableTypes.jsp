@@ -20,7 +20,8 @@
  <div class="col-md-6 col-md-offset-1">
      <h1>Modificacion de un nuevo tipo de elemento</h1>
      <hr>
-     <form class="form-group" action="ModificarBookableTypes" method="post">
+ 
+   <form class="form-group" action="ModificarBookableTypes" method="post" accept-charset=utf-8>
          <div class="form-group">
              <input type="text" class="form-control" name="id" readonly ="readonly" placeholder="ID..." required value = "<%=((BookableTypes)request.getAttribute("bt")).getId() %>">
          </div>
@@ -58,9 +59,8 @@
       
 
             <input type="submit" class="btn btn-primary pull-right" name="modificar" value="Modificar">
-        </div>
-        
-    </form>
+        </div>   
+    </form> 
 </div>
 </div>
 </body>
