@@ -55,6 +55,48 @@ public class DataBookableTypes {
 		
 	}
 	
+	public ArrayList<BookableTypes> getAllReduc() throws Exception{
+		
+		Statement stmt=null;
+		ResultSet rs=null;
+		ArrayList<BookableTypes> booktypes= new ArrayList<BookableTypes>();
+		try {
+			stmt = FactoryConexion.getInstancia()
+					.getConn().createStatement();
+			rs = stmt.executeQuery("select * from bookable_types where req_encargado=false");
+			if(rs!=null){
+				while(rs.next()){
+					BookableTypes bt =new BookableTypes();
+							bt.setId(Integer.parseInt(rs.getString("id")));
+							bt.setNombre(rs.getString("nombre"));
+							bt.setCantReservasPendientes(Integer.parseInt(rs.getString("cantReservasPendientes")));
+							bt.setDias(Integer.parseInt(rs.getString("dias_antic")));
+							bt.setLimite(Integer.parseInt(rs.getString("limite_horas")));
+							bt.setReq_encargado(rs.getBoolean("req_encargado"));
+							booktypes.add(bt);
+				}
+			}
+		} catch (SQLException e) {
+			
+			throw e;
+		} catch (AppDataException ade){
+			throw ade;
+		}
+		
+
+		try {
+			if(rs!=null) rs.close();
+			if(stmt!=null) stmt.close();
+			FactoryConexion.getInstancia().releaseConn();
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		
+		return booktypes;
+		
+	}
+	
 	public ArrayList<String> getAllNames() throws Exception{
 		
 		Statement stmt=null;

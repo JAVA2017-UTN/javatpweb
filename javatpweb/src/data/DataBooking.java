@@ -21,13 +21,13 @@ public class DataBooking {
 		try {
 			stmt = FactoryConexion.getInstancia()
 					.getConn().createStatement();
-			rs = stmt.executeQuery("select * from booking");
+			rs = stmt.executeQuery("select * from booking where fecha >= CURRENT_TIMESTAMP();");
 			if(rs!=null){
 				while(rs.next()){
 					Booking b = new Booking();
 					b.setBooking(Integer.parseInt(rs.getString("id")), rs.getString("detalle"), rs.getDate("fecha"), rs.getTime("hora"), 
 							Integer.parseInt(rs.getString("id_tipo_elemento")), Integer.parseInt(rs.getString("id_elemento")),
-							Integer.parseInt(rs.getString("id_persona")));
+							Integer.parseInt(rs.getString("id_persona")), rs.getBoolean("anulada"));
 					books.add(b);
 				}
 			}
@@ -54,19 +54,20 @@ public class DataBooking {
 	
 	public ArrayList<Booking> getReservasByPerson(int id_pers) throws Exception{
 		
-		Statement stmt=null;
+		PreparedStatement stmt=null;
 		ResultSet rs=null;
 		ArrayList<Booking> books= new ArrayList<Booking>();
 		try {
 			stmt = FactoryConexion.getInstancia()
-					.getConn().createStatement();
-			rs = stmt.executeQuery("select * from booking where id_persona = '15' and fecha >= CURRENT_TIMESTAMP();");
+					.getConn().prepareStatement("select * from booking where id_persona =? and fecha >= CURRENT_TIMESTAMP();");
+			stmt.setInt(1, id_pers);
+			rs = stmt.executeQuery();
 			if(rs!=null){
 				while(rs.next()){
 					Booking b = new Booking();
 					b.setBooking(Integer.parseInt(rs.getString("id")), rs.getString("detalle"), rs.getDate("fecha"), rs.getTime("hora"), 
 							Integer.parseInt(rs.getString("id_tipo_elemento")), Integer.parseInt(rs.getString("id_elemento")),
-							Integer.parseInt(rs.getString("id_persona")));
+							Integer.parseInt(rs.getString("id_persona")), rs.getBoolean("anulada"));
 					books.add(b);
 				}
 			}
@@ -111,6 +112,27 @@ public class DataBooking {
 		}
 	}
 	
+	public void anularById(int id) throws Exception {
+		PreparedStatement stmt=null;
+		try {
+			stmt=FactoryConexion.getInstancia().getConn()
+					.prepareStatement(
+					"UPDATE booking SET anulada=? where id=? "
+					);
+			stmt.setBoolean(1, true);
+			stmt.setInt(2, id);
+			stmt.execute();
+		} catch (SQLException | AppDataException e) {
+			throw e;
+		}
+		try {
+			if(stmt!=null)stmt.close();
+			FactoryConexion.getInstancia().releaseConn();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void update(Booking b) throws Exception {
 		PreparedStatement stmt=null;
 		try {
@@ -143,7 +165,7 @@ public class DataBooking {
 		try {
 			stmt=FactoryConexion.getInstancia().getConn()
 					.prepareStatement(
-					"insert into booking(fecha, hora, detalle, id_elemento, id_tipo_elemento, id_persona) values (?,?,?,?,?,'15')",
+					"insert into booking(fecha, hora, detalle, id_elemento, id_tipo_elemento, id_persona, anulada) values (?,?,?,?,?,?,?)",
 					PreparedStatement.RETURN_GENERATED_KEYS
 					);
 			stmt.setDate(1, b.getFecha());
@@ -151,7 +173,8 @@ public class DataBooking {
 			stmt.setString(3, b.getDetalle());
 			stmt.setInt(4, b.getId_elemento());
 			stmt.setInt(5, b.getId_tipoElemento());
-			/*stmt.setInt(6, b.getId_persona());*/
+			stmt.setInt(6, b.getId_persona());
+			stmt.setBoolean(7, b.isAnulada());
 			stmt.executeUpdate();
 			keyResultSet=stmt.getGeneratedKeys();
 			if(keyResultSet!=null && keyResultSet.next()){
