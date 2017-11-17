@@ -1,6 +1,8 @@
 package servlet;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -71,14 +73,17 @@ public class EliminarBookableItems extends HttpServlet {
 				BookableItems bi = new BookableItems();
 				
 				bi.setId(id);
-				//bi.setNombre(nombre);
-				//bi.setId_tipoElemento(id_tipoElemento);
 				
 				try {
 					ctrl.delete(bi);
 				} catch (AppDataException ade) {
 					request.setAttribute("Error", ade.getMessage());
+				} catch (SQLException se){
+					se.printStackTrace();
+					request.setAttribute("Errorsql", "Imposible eliminar. Este elemento esta asociado a una reserva pendiente");
+					request.getRequestDispatcher("WEB-INF/sqlError.jsp").forward(request, response);
 				} catch (Exception e) {
+					e.printStackTrace();
 					response.setStatus(502);
 				}
 			}

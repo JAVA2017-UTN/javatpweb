@@ -27,7 +27,7 @@
      <h1>Alta de una nueva reserva</h1>
      <hr>
      <h3>Seleccione un tipo de elemento a reservar: </h2>
-     <form class="form-group" action="SeleccionarTipoElemento" method="post">
+     <form class="form-group" action="SeleccionarTipoElemento" method="post" accept-charset=utf-8>
    			<div class="form-group">
                  <select name="tipo_elemento" class="form-control">
                  <% 

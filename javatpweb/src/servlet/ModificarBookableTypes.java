@@ -1,6 +1,8 @@
 package servlet;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -98,7 +100,11 @@ public class ModificarBookableTypes extends HttpServlet {
 					ctrl.delete(bt);
 				} catch (AppDataException ade) {
 					request.setAttribute("Error", ade.getMessage());
+				} catch (SQLException se){
+					request.setAttribute("Errorsql", "Imposible eliminar. Este tipo de elemento esta asociado a un elemento existente");
+					request.getRequestDispatcher("WEB-INF/sqlError.jsp").forward(request, response);
 				} catch (Exception e) {
+					e.printStackTrace();
 					response.setStatus(502);
 				}
 			}
