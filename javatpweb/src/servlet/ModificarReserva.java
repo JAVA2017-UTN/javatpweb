@@ -54,7 +54,7 @@ public class ModificarReserva extends HttpServlet {
 					} catch (Exception e) {
 						response.setStatus(502);
 					}
-					Emailer.getInstance().send("mauriminio96@gmail.com","Baja de reserva","Su reserva de id: " +id +" fue satisfactoriamente eliminada.");
+					//Emailer.getInstance().send("mauriminio96@gmail.com","Baja de reserva","Su reserva de id: " +id +" fue satisfactoriamente eliminada.");
 					request.getRequestDispatcher("reservas.jsp").forward(request, response);
 					
 				} catch (Exception e) {
@@ -73,9 +73,10 @@ public class ModificarReserva extends HttpServlet {
 					} catch (AppDataException ade) {
 						request.setAttribute("Error", ade.getMessage());
 					} catch (Exception e) {
+						e.printStackTrace();
 						response.setStatus(502);
 					}
-					Emailer.getInstance().send("mauriminio96@gmail.com","Anulación de reserva","La reserva: " +id +" fue satisfactoriamente anulada.");
+					//Emailer.getInstance().send("mauriminio96@gmail.com","Anulación de reserva","La reserva: " +id +" fue satisfactoriamente anulada.");
 					request.getRequestDispatcher("reservas.jsp").forward(request, response);
 					
 				} catch (Exception e) {

@@ -7,7 +7,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import entity.BookableItems;
-import entity.People;
 import util.AppDataException;
 
 public class DataBookableItems {
@@ -203,7 +202,6 @@ public class DataBookableItems {
 	
 	public void delete(BookableItems bi) throws Exception {
 		PreparedStatement stmt=null;
-		ResultSet keyResultSet=null;
 		try {
 			stmt=FactoryConexion.getInstancia().getConn()
 					.prepareStatement(
@@ -248,6 +246,37 @@ public class DataBookableItems {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public BookableItems getByNombre(BookableItems bookitems) throws Exception{
+		BookableItems bi =null;
+		PreparedStatement stmt=null;
+		ResultSet rs=null;
+		try {
+			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
+					"select * from bookable_items where nombre=?");
+			stmt.setString(1, bookitems.getNombre());
+			rs=stmt.executeQuery();
+			if(rs!=null && rs.next()){
+					bi=new BookableItems();
+					
+					bi.setId(Integer.parseInt(rs.getString("id")));
+					bi.setNombre(rs.getString("nombre"));
+					bi.setId_tipoElemento(Integer.parseInt(rs.getString("id_tipoElemento")));
+			}
+			
+		} catch (Exception e) {
+			throw e;
+		} finally{
+			try {
+				if(rs!=null)rs.close();
+				if(stmt!=null)stmt.close();
+				FactoryConexion.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				throw e;
+			}
+		}
+		return bi;
 	}
 
 }

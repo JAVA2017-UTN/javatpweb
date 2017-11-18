@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import data.DataBookableItems;
 import entity.BookableItems;
-import entity.BookableTypes;
+import util.DuplicatedException;
 
 public class CtrlBookableItems {
 	
@@ -16,8 +16,13 @@ public class CtrlBookableItems {
 		databi = new DataBookableItems();
 	}
 	
-	public void add(BookableItems bi) throws Exception{
-		databi.add(bi);
+	public void add(BookableItems bi) throws DuplicatedException, Exception{
+		
+		if(databi.getByNombre(bi)!=null){
+			throw new DuplicatedException("El elemento ya existe");
+		} else {
+			databi.add(bi);
+		}
 	}
 	
 	public void delete(BookableItems bi)throws Exception{
