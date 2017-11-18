@@ -62,6 +62,7 @@ public class AltaBookableItems extends HttpServlet {
 				request.setAttribute("DuplicatedError", de.getMessage());
 				request.getRequestDispatcher("/WEB-INF/duplicatedError.jsp").forward(request, response);
 			} catch (Exception e) {
+				
 				response.setStatus(502);
 			}
 			
