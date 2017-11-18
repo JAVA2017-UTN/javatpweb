@@ -262,7 +262,7 @@ public class DataBookableItems {
 					
 					bi.setId(Integer.parseInt(rs.getString("id")));
 					bi.setNombre(rs.getString("nombre"));
-					bi.setId_tipoElemento(Integer.parseInt(rs.getString("id_tipoElemento")));
+					bi.setId_tipoElemento(Integer.parseInt(rs.getString("id_tipo_elemento")));
 			}
 			
 		} catch (Exception e) {
