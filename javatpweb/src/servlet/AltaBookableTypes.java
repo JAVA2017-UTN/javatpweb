@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.sql.Time;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import util.AppDataException;
+import util.DuplicatedException;
 import entity.BookableTypes;
 import controllers.CtrlBookingTypes;
 
@@ -71,19 +71,19 @@ public class AltaBookableTypes extends HttpServlet {
 				ctrl.add(bt);
 			} catch (AppDataException ade) {
 				request.setAttribute("Error", ade.getMessage());
+			} catch (DuplicatedException de){
+				request.setAttribute("DuplicatedError", de.getMessage());
+				request.getRequestDispatcher("/WEB-INF/duplicatedError.jsp").forward(request, response);
 			} catch (Exception e) {
 				response.setStatus(502);
 			}
-			
-			
-			
+		
 			request.getRequestDispatcher("/bookableTypes.jsp").forward(request, response);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		//doGet(request, response);
+
 	}
 
 	/**

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import data.DataBookableTypes;
 
 import entity.BookableTypes;
+import util.DuplicatedException;
 
 
 public class CtrlBookingTypes {
@@ -19,8 +20,13 @@ public class CtrlBookingTypes {
 		booktypes = new ArrayList<BookableTypes>();
 	}
 	
-	public void add(BookableTypes bt) throws Exception{
-		databt.add(bt);
+	public void add(BookableTypes bt) throws DuplicatedException, Exception{
+		if(databt.getByNombre(bt)!=null){
+			throw new DuplicatedException("El tipo de elemento elemento ya existe");
+		} else {
+			databt.add(bt);
+		}
+		
 	}
 	
 	public void delete(BookableTypes bt)throws Exception{

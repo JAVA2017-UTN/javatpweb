@@ -103,6 +103,7 @@ public class ModificarBookableTypes extends HttpServlet {
 				} catch (SQLException se){
 					request.setAttribute("Errorsql", "Imposible eliminar. Este tipo de elemento esta asociado a un elemento existente");
 					request.getRequestDispatcher("WEB-INF/sqlError.jsp").forward(request, response);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 					response.setStatus(502);

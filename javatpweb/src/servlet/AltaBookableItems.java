@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import controllers.CtrlBookableItems;
 import entity.BookableItems;
 import util.AppDataException;
+import util.DuplicatedException;
 
 /**
  * Servlet implementation class altaBookableItems
@@ -57,6 +58,9 @@ public class AltaBookableItems extends HttpServlet {
 				ctrl.add(bi);
 			} catch (AppDataException ade) {
 				request.setAttribute("Error", ade.getMessage());
+			} catch (DuplicatedException de){
+				request.setAttribute("DuplicatedError", de.getMessage());
+				request.getRequestDispatcher("/WEB-INF/duplicatedError.jsp").forward(request, response);
 			} catch (Exception e) {
 				response.setStatus(502);
 			}
