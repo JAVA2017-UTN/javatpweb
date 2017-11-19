@@ -67,6 +67,7 @@ public class ModificarBookableTypes extends HttpServlet {
 				bt.setId(Integer.parseInt((id)));
 				try {
 					ctrl.update(bt);
+					request.getRequestDispatcher("/bookableTypes.jsp").forward(request, response);
 				} catch (AppDataException ade) {
 					request.setAttribute("Error", ade.getMessage());
 				} catch (Exception e) {
@@ -98,6 +99,7 @@ public class ModificarBookableTypes extends HttpServlet {
 				bt.setId(Integer.parseInt((id)));
 				try {
 					ctrl.delete(bt);
+					request.getRequestDispatcher("/bookableTypes.jsp").forward(request, response);
 				} catch (AppDataException ade) {
 					request.setAttribute("Error", ade.getMessage());
 				} catch (SQLException se){
@@ -110,8 +112,6 @@ public class ModificarBookableTypes extends HttpServlet {
 				}
 			}
 			
-			
-			request.getRequestDispatcher("/bookableTypes.jsp").forward(request, response);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
