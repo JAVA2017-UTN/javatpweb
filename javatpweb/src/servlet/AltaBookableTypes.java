@@ -69,6 +69,7 @@ public class AltaBookableTypes extends HttpServlet {
 			
 			try {
 				ctrl.add(bt);
+				request.getRequestDispatcher("/bookableTypes.jsp").forward(request, response);
 			} catch (AppDataException ade) {
 				request.setAttribute("Error", ade.getMessage());
 			} catch (DuplicatedException de){
@@ -78,7 +79,6 @@ public class AltaBookableTypes extends HttpServlet {
 				response.setStatus(502);
 			}
 		
-			request.getRequestDispatcher("/bookableTypes.jsp").forward(request, response);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

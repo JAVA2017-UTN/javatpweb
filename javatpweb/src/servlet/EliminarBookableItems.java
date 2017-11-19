@@ -56,6 +56,7 @@ public class EliminarBookableItems extends HttpServlet {
 				
 				try {
 					ctrl.update(bi);
+					request.getRequestDispatcher("/bookableItems.jsp").forward(request, response);
 				} catch (AppDataException ade) {
 					request.setAttribute("Error", ade.getMessage());
 				} catch (Exception e) {
@@ -76,6 +77,8 @@ public class EliminarBookableItems extends HttpServlet {
 				
 				try {
 					ctrl.delete(bi);
+					
+					request.getRequestDispatcher("/bookableItems.jsp").forward(request, response);
 				} catch (AppDataException ade) {
 					request.setAttribute("Error", ade.getMessage());
 				} catch (SQLException se){
@@ -89,7 +92,6 @@ public class EliminarBookableItems extends HttpServlet {
 			}
 			
 			
-			request.getRequestDispatcher("/bookableItems.jsp").forward(request, response);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
