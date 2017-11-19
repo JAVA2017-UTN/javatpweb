@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import controllers.CtrlBooking;
 import entity.Booking;
 import util.AppDataException;
+import util.DuplicatedException;
 import util.Emailer;
 
 /**
@@ -60,13 +61,18 @@ public class AltaReserva extends HttpServlet {
 			bok.setAnulada(false);
 			try {
 				ctrl.add(bok);
-			} catch (AppDataException ade) {		
+				
+				//Emailer.getInstance().send("mauriminio96@gmail.com","Alta de reserva","Su reserva " +detalle +" para el dia " +fecha +" a las " +hora +" fue realizada con satisfacción.");
+				request.getRequestDispatcher("/reservas.jsp").forward(request, response);
+			} catch (AppDataException ade) {
 				request.setAttribute("Error", ade.getMessage());
+			} catch (DuplicatedException de){
+				request.setAttribute("Errorlim", de.getMessage());
+				request.getRequestDispatcher("/WEB-INF/limiteError.jsp").forward(request, response);
 			} catch (Exception e) {
 				response.setStatus(502);
 			}
-			//Emailer.getInstance().send("mauriminio96@gmail.com","Alta de reserva","Su reserva " +detalle +" para el dia " +fecha +" a las " +hora +" fue realizada con satisfacción.");
-			request.getRequestDispatcher("/reservas.jsp").forward(request, response);
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();

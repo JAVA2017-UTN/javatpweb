@@ -192,7 +192,33 @@ public class DataBooking {
 		}
 	}
 	
-	
+	public int cantidadReservas(Booking b) throws Exception{
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		int cantidad = 0;
+		
+		try{
+			stmt = FactoryConexion.getInstancia().getConn()
+					.prepareStatement("select count(*) as cant from booking where id_tipo_elemento = ? group by id_tipo_elemento;");
+			stmt.setInt(1, b.getId_tipoElemento());
+			rs = stmt.executeQuery();
+			if(rs!=null && rs.next()){
+				cantidad = Integer.parseInt(rs.getString("cant"));
+			}
+		} catch (Exception e){
+			throw e;
+		} finally {
+			try {
+				if(rs!=null)rs.close();
+				if(stmt!=null)stmt.close();
+				FactoryConexion.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				throw e;
+			}
+		}
+		
+		return cantidad;
+	}
 	
 	
 
