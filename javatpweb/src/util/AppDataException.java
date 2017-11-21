@@ -24,5 +24,4 @@ public class AppDataException extends Exception{
 	public AppDataException(String message) {
 		this.message = message;
 	}
-
 }

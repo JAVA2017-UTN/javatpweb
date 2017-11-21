@@ -62,7 +62,7 @@ public class AltaReserva extends HttpServlet {
 			try {
 				ctrl.add(bok);
 				
-				//Emailer.getInstance().send("mauriminio96@gmail.com","Alta de reserva","Su reserva " +detalle +" para el dia " +fecha +" a las " +hora +" fue realizada con satisfacción.");
+				Emailer.getInstance().send("tpjava2017@gmail.com","Alta de reserva","Su reserva " +detalle +" para el dia " +fecha +" a las " +hora +" fue realizada con satisfacción.");
 				request.getRequestDispatcher("/reservas.jsp").forward(request, response);
 			} catch (AppDataException ade) {
 				request.setAttribute("Error", ade.getMessage());
