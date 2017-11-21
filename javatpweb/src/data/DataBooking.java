@@ -199,7 +199,7 @@ public class DataBooking {
 		
 		try{
 			stmt = FactoryConexion.getInstancia().getConn()
-					.prepareStatement("select count(*) as cant from booking where id_tipo_elemento = ? group by id_tipo_elemento;");
+					.prepareStatement("select count(*) as cant from booking where id_tipo_elemento = ? and anulada=false group by id_tipo_elemento;");
 			stmt.setInt(1, b.getId_tipoElemento());
 			rs = stmt.executeQuery();
 			if(rs!=null && rs.next()){

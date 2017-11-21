@@ -26,8 +26,8 @@ public class Emailer {
 		 props.put("mail.smtp.starttls.enable", "true");
 		 props.put("mail.smtp.host", "smtp.gmail.com");
 		 props.put("mail.smtp.port", "587");
-		 props.put("mail.username", "mauriminio96@gmail.com");
-		 props.put("mail.password","3704385391");
+		 props.put("mail.username", "tpjava2017@gmail.com");
+		 props.put("mail.password","utnjava2017");
 		
 	}
 	
@@ -36,7 +36,7 @@ public class Emailer {
 		Session session = Session.getInstance(props,
 		  new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication("mauriminio96@gmail.com", "3704385391");
+				return new PasswordAuthentication("tpjava2017@gmail.com", "utnjava2017");
 				//return new PasswordAuthentication(props.getProperty("mail.username"), props.getProperty("mail.password"));
 			}
 		  });
@@ -44,7 +44,7 @@ public class Emailer {
 		try {
 
 			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("mauriminio96@gmail.com"));
+			message.setFrom(new InternetAddress("tpjava2017@gmail.com"));
 			//message.setFrom(new InternetAddress(props.getProperty("mail.username")));
 			message.setRecipients(Message.RecipientType.TO,
 				InternetAddress.parse(to)); //"adrianmeca@gmail.com"

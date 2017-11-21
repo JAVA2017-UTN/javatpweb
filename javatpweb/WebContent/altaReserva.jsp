@@ -3,6 +3,8 @@
 <%@page import="entity.BookableItems"%>
 <%@page import="entity.BookableTypes"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="java.util.Calendar"%>
+<%@page import="java.util.Date"%>
 <%@page import="controllers.CtrlBookingTypes" %>
 <%@page import="controllers.CtrlBookableItems" %>
 
@@ -32,6 +34,17 @@
    			<div class="form-group">
                  <select name="elemento" class="form-control">
                  <%
+                 Calendar calendar = Calendar.getInstance();
+                 int year = calendar.get(Calendar.YEAR);
+                 int month = calendar.get(Calendar.MONTH)+1;
+                 int day = calendar.get(Calendar.DAY_OF_MONTH)+1;
+                 BookableTypes bt = new BookableTypes();
+                 CtrlBookingTypes ctrlTypes = new CtrlBookingTypes();
+                 bt = ctrlTypes.getById((Integer)session.getAttribute("id_tipoEle"));
+                 calendar.add(Calendar.DAY_OF_MONTH, bt.getDias());
+                 int yearMax = calendar.get(Calendar.YEAR);
+                 int monthMax = calendar.get(Calendar.MONTH)+1;
+                 int dayMax = calendar.get(Calendar.DAY_OF_MONTH);
                  CtrlBookableItems ctrlItems = new CtrlBookableItems();
                  ArrayList<BookableItems> listbi = ctrlItems.getAllByType((Integer)session.getAttribute("id_tipoEle"));
                  for(BookableItems bi : listbi) {
@@ -43,7 +56,7 @@
 		       </select>
       		</div>
       		<div class="form-group">
-		   		<input type="date" class="form-control" name="fecha">
+		   		<input type="date" class="form-control" name="fecha" min="<%=year+"-"+month+"-"+day %>" max="<%=yearMax+"-"+monthMax+"-"+dayMax %>">
 			</div>
 			<div class="form-group">
 		   		<input type="time" class="form-control" name="hora">
