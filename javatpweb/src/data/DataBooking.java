@@ -27,7 +27,7 @@ public class DataBooking {
 					Booking b = new Booking();
 					b.setBooking(Integer.parseInt(rs.getString("id")), rs.getString("detalle"), rs.getDate("fecha"), rs.getTime("hora"), 
 							Integer.parseInt(rs.getString("id_tipo_elemento")), Integer.parseInt(rs.getString("id_elemento")),
-							Integer.parseInt(rs.getString("id_persona")), rs.getBoolean("anulada"));
+							Integer.parseInt(rs.getString("id_persona")), rs.getBoolean("anulada"), Integer.parseInt(rs.getString("cant_horas")));
 					books.add(b);
 				}
 			}
@@ -67,7 +67,7 @@ public class DataBooking {
 					Booking b = new Booking();
 					b.setBooking(Integer.parseInt(rs.getString("id")), rs.getString("detalle"), rs.getDate("fecha"), rs.getTime("hora"), 
 							Integer.parseInt(rs.getString("id_tipo_elemento")), Integer.parseInt(rs.getString("id_elemento")),
-							Integer.parseInt(rs.getString("id_persona")), rs.getBoolean("anulada"));
+							Integer.parseInt(rs.getString("id_persona")), rs.getBoolean("anulada"), Integer.parseInt(rs.getString("cant_horas")));
 					books.add(b);
 				}
 			}
@@ -165,7 +165,7 @@ public class DataBooking {
 		try {
 			stmt=FactoryConexion.getInstancia().getConn()
 					.prepareStatement(
-					"insert into booking(fecha, hora, detalle, id_elemento, id_tipo_elemento, id_persona, anulada) values (?,?,?,?,?,?,?)",
+					"insert into booking(fecha, hora, detalle, id_elemento, id_tipo_elemento, id_persona, anulada, cant_horas) values (?,?,?,?,?,?,?,?)",
 					PreparedStatement.RETURN_GENERATED_KEYS
 					);
 			stmt.setDate(1, b.getFecha());
@@ -175,6 +175,7 @@ public class DataBooking {
 			stmt.setInt(5, b.getId_tipoElemento());
 			stmt.setInt(6, b.getId_persona());
 			stmt.setBoolean(7, b.isAnulada());
+			stmt.setInt(8, b.getCant_horas());
 			stmt.executeUpdate();
 			keyResultSet=stmt.getGeneratedKeys();
 			if(keyResultSet!=null && keyResultSet.next()){

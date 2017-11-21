@@ -55,10 +55,20 @@ public class Login extends HttpServlet {
 			} catch (Exception e) {
 				response.setStatus(502);
 			}
-			try {
-				request.getRequestDispatcher("WEB-INF/welcome.jsp").forward(request, response);												
-			} catch (Exception e) {
-				request.getRequestDispatcher("WEB-INF/errorLogueo.jsp").forward(request, response);
+			if(ctrl.validaUsuario(per) != null) {
+				try {
+					request.getRequestDispatcher("WEB-INF/welcome.jsp").forward(request, response);												
+				} catch (Exception e) {
+					response.setStatus(502);
+				}	
+			}
+			else {
+				try {
+					request.getRequestDispatcher("WEB-INF/errorLogueo.jsp").forward(request, response);												
+				} catch (Exception e) {
+					response.setStatus(502);
+				}
+				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

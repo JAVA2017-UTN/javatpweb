@@ -40,6 +40,7 @@
 					<th>ID Elemento</th>
 					<th>ID Persona</th>
 					<th>Anulada</th>
+					<th>Cant Horas Reservadas</th>
 					<th></th>
 				</tr>
 				<%
@@ -57,6 +58,7 @@
 						<td><%=b.getId_elemento() %><input type="hidden" name="id" value="<%=b.getId_elemento() %>"></td>
 						<td><%=b.getId_persona() %><input type="hidden" name="id" value="<%=b.getId_persona() %>"></td>
 						<td><%=b.isAnuladaString() %><input type="hidden" name="id" value="<%=b.isAnulada() %>"></td>
+						<td><%=b.getCant_horas() %><input type="hidden" name="id" value="<%=b.getCant_horas() %>"></td>
 						<%
 						LocalDateTime fecha = LocalDateTime.now();
 						if(!b.isAnulada()) 
@@ -89,6 +91,7 @@
 					<th>ID Elemento</th>
 					<th>ID Persona</th>
 					<th>Anulada</th>
+					<th>Cant Horas Reservadas</th>
 					<th></th>
 				</tr>
 				<%
@@ -107,6 +110,7 @@
 						<td><%=b.getId_elemento() %><input type="hidden" name="id" value="<%=b.getId_elemento() %>"></td>
 						<td><%=b.getId_persona() %><input type="hidden" name="id" value="<%=b.getId_persona() %>"></td>
 						<td><%=b.isAnuladaString() %><input type="hidden" name="id" value="<%=b.isAnulada() %>"></td>
+						<td><%=b.getCant_horas() %><input type="hidden" name="id" value="<%=b.getCant_horas() %>"></td>
 						<%if(!b.isAnulada()) 
 						{
 							%>

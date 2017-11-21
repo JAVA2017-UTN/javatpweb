@@ -61,6 +61,9 @@
 			<div class="form-group">
 		   		<input type="time" class="form-control" name="hora">
 			</div>
+			<div class="form-group">
+		   		<input type="number" class="form-control" name="cant_horas" max="<%=bt.getLimite() %>" min="1">
+			</div>
          	<div class="form-group">
              <textarea style="resize:none; height:150px" type="text" class="form-control" name="detalle" placeholder="Detalle..." required> </textarea>
          	</div>

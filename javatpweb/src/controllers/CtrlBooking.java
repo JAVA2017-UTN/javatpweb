@@ -9,6 +9,8 @@ import entity.Booking;
 import util.AppDataException;
 import util.DuplicatedException;
 
+
+
 public class CtrlBooking {
 	
 	private DataBooking dataBook;
@@ -20,12 +22,18 @@ public class CtrlBooking {
 	}
 	
 	public void add(Booking b) throws Exception , DuplicatedException{
+		CtrlBookingTypes ctrlTypes = new CtrlBookingTypes();
 		BookableTypes bt = new BookableTypes();
-		bt.setId(b.getId_tipoElemento());
+		bt = ctrlTypes.getById(b.getId_tipoElemento());
 		if(dataBook.cantidadReservas(b) >= databt.getById(bt).getCantReservasPendientes()){
 			throw new DuplicatedException("No se pueden reservar mas elementos de este tipo");
-		} else {	
-			dataBook.add(b);
+		} else {
+			if (b.getCant_horas() <= bt.getLimite()) {
+				dataBook.add(b);				
+			}
+			else {
+				throw new DuplicatedException("El máximo de horas a reservar de este tipo es de: "+bt.getLimite());
+			}
 		}
 	}
 	
