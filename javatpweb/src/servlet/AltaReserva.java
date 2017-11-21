@@ -50,6 +50,7 @@ public class AltaReserva extends HttpServlet {
 			int id_tipoEle = Integer.parseInt(request.getParameter("tipo_elemento"));
 			int id_ele = Integer.parseInt(request.getParameter("elemento"));
 			int id_persona = Integer.parseInt(request.getParameter("id_persona"));
+			int cant_horas = Integer.parseInt(request.getParameter("cant_horas"));
 			CtrlBooking ctrl = new CtrlBooking();
 			Booking bok = new Booking();
 			bok.setDetalle(detalle);
@@ -59,6 +60,7 @@ public class AltaReserva extends HttpServlet {
 			bok.setId_tipoElemento(id_tipoEle);
 			bok.setId_persona(id_persona);
 			bok.setAnulada(false);
+			bok.setCant_horas(cant_horas);
 			try {
 				ctrl.add(bok);
 				
