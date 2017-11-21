@@ -61,7 +61,7 @@ CREATE TABLE `bookable_types` (
   `req_encargado` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70,7 +70,7 @@ CREATE TABLE `bookable_types` (
 
 LOCK TABLES `bookable_types` WRITE;
 /*!40000 ALTER TABLE `bookable_types` DISABLE KEYS */;
-INSERT INTO `bookable_types` VALUES (1,'Motos',7,24,0,0),(2,'Automóviles',3,72,3,1),(3,'Camiones',1,96,7,1);
+INSERT INTO `bookable_types` VALUES (1,'Motos',7,24,1,0),(2,'Automóviles',3,72,3,1),(3,'Camiones',1,96,7,1);
 /*!40000 ALTER TABLE `bookable_types` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -90,6 +90,7 @@ CREATE TABLE `booking` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_persona` int(11) NOT NULL,
   `anulada` tinyint(4) NOT NULL,
+  `cant_horas` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_booking_UNIQUE` (`id`),
   KEY `fk_booking_people_idx` (`id_persona`),
@@ -98,7 +99,7 @@ CREATE TABLE `booking` (
   CONSTRAINT `fk_booking_bookable_items` FOREIGN KEY (`id_elemento`) REFERENCES `bookable_items` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_booking_bookable_types` FOREIGN KEY (`id_tipo_elemento`) REFERENCES `bookable_types` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_booking_people` FOREIGN KEY (`id_persona`) REFERENCES `people` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -107,6 +108,7 @@ CREATE TABLE `booking` (
 
 LOCK TABLES `booking` WRITE;
 /*!40000 ALTER TABLE `booking` DISABLE KEYS */;
+INSERT INTO `booking` VALUES ('2017-11-22','12:45:00',' Probando Alta Motos',7,1,51,17,0,24),('2017-11-26','23:12:00',' Probando Alta Camiones',8,3,52,17,0,52),('2017-11-23','03:45:00','Probando Alta Autos ',6,2,53,17,0,34);
 /*!40000 ALTER TABLE `booking` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -128,7 +130,7 @@ CREATE TABLE `people` (
   `tipo_usuario` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -137,7 +139,7 @@ CREATE TABLE `people` (
 
 LOCK TABLES `people` WRITE;
 /*!40000 ALTER TABLE `people` DISABLE KEYS */;
-INSERT INTO `people` VALUES (14,'Sandra','Pennice','17017061','Sandra','sandra',1,0),(17,'Mauricio','Miño','39606313','mauri','mauri',1,1),(21,'Usuario','Probando','35625321','usuario','usuario',0,2);
+INSERT INTO `people` VALUES (17,'Mauricio','Miño','39606313','mauri','mauri',1,1),(21,'Usuario','Probando','35625321','usuario','usuario',1,2),(22,'Admin','Admin','Admin','admin','admin',1,0);
 /*!40000 ALTER TABLE `people` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -150,4 +152,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-13 21:31:39
+-- Dump completed on 2017-11-21 20:07:00
