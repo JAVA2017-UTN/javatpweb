@@ -5,8 +5,12 @@
 <%@page import="java.sql.Timestamp"%>
 <%@page import="entity.People"%>
 <%@page import="entity.Booking"%>
+<%@page import="entity.BookableItems"%>
+<%@page import="entity.BookableTypes"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="controllers.CtrlBooking"%>
+<%@page import="controllers.CtrlBookingTypes"%>
+<%@page import="controllers.CtrlBookableItems"%>
 
 <%@ include file="../navbar.jsp" %>
 
@@ -38,29 +42,37 @@ alert(" <%= (String)request.getAttribute("Errorlim") %>");
 			<table class="table table-hover">
 			   <tr>
 			   		<th>ID</th>
-					<th>Detalle</th>
 					<th>Fecha</th>
 					<th>Hora</th>
-					<th>ID Tipo Elemento</th>
-					<th>ID Elemento</th>
+					<th>Tipo Elemento</th>
+					<th>Elemento</th>
 					<th>ID Persona</th>
+					<th>Cant Horas Reservadas</th>
+					<th>Detalle</th>
 					<th>Anulada</th>
 					<th></th>
 				</tr>
 				<%
 					CtrlBooking ctrl= new CtrlBooking();
 					ArrayList<Booking> bookings = ctrl.getList();
+					CtrlBookingTypes ctrlType = new CtrlBookingTypes();
+					CtrlBookableItems ctrlItem = new CtrlBookableItems();
+					String nombreType;
+					String nombreItem;
 					for(Booking b : bookings){
+						nombreType = ctrlType.getById(b.getId_tipoElemento()).getNombre();
+						nombreItem = ctrlItem.getById(b.getId_elemento()).getNombre();
 				%>
 				<form method="POST" action="ModificarReserva">
 					<tr>
 						<td><%=b.getId() %><input type="hidden" name="id" value="<%=b.getId() %>"></td>
-						<td><%=b.getDetalle() %><input type="hidden" name="id" value="<%=b.getDetalle() %>"></td>
 						<td><%=b.getFecha() %><input type="hidden" name="id" value="<%=b.getFecha() %>"></td>
 						<td><%=b.getHora() %><input type="hidden" name="id" value="<%=b.getHora() %>"></td>
-						<td><%=b.getId_tipoElemento() %><input type="hidden" name="id" value="<%=b.getId_tipoElemento() %>"></td>
-						<td><%=b.getId_elemento() %><input type="hidden" name="id" value="<%=b.getId_elemento() %>"></td>
+						<td><%=nombreType %><input type="hidden" name="id" value="<%=b.getId_tipoElemento() %>"></td>
+						<td><%=nombreItem %><input type="hidden" name="id" value="<%=b.getId_elemento() %>"></td>
 						<td><%=b.getId_persona() %><input type="hidden" name="id" value="<%=b.getId_persona() %>"></td>
+						<td><%=b.getCant_horas() %><input type="hidden" name="id" value="<%=b.getCant_horas() %>"></td>
+						<td><%=b.getDetalle() %><input type="hidden" name="id" value="<%=b.getDetalle() %>"></td>
 						<td><%=b.isAnuladaString() %><input type="hidden" name="id" value="<%=b.isAnulada() %>"></td>
 						<%
 						LocalDateTime fecha = LocalDateTime.now();
@@ -87,31 +99,38 @@ alert(" <%= (String)request.getAttribute("Errorlim") %>");
 			<table class="table table-hover">
 			   <tr>
 			   		<th>ID</th>
-					<th>Detalle</th>
 					<th>Fecha</th>
 					<th>Hora</th>
-					<th>ID Tipo Elemento</th>
-					<th>ID Elemento</th>
-					<th>ID Persona</th>
+					<th>Tipo Elemento</th>
+					<th>Elemento</th>
+					<th>Cant Horas Reservadas</th>
+					<th>Detalle</th>
 					<th>Anulada</th>
 					<th></th>
 				</tr>
 				<%
-					CtrlBooking ctrl= new CtrlBooking();
+					CtrlBooking ctrl = new CtrlBooking();
+					CtrlBookingTypes ctrlType = new CtrlBookingTypes();
+					CtrlBookableItems ctrlItem = new CtrlBookableItems();
+					String nombreType;
+					String nombreItem;
 					int id_pers = ((People)session.getAttribute("user")).getId();
 					ArrayList<Booking> bookings = ctrl.getReservasByPerson(id_pers);
 					for(Booking b : bookings){
+						nombreType = ctrlType.getById(b.getId_tipoElemento()).getNombre();
+						nombreItem = ctrlItem.getById(b.getId_elemento()).getNombre();
 				%>
 				<form method="POST" action="ModificarReserva">
 					<tr>
 						<td><%=b.getId() %><input type="hidden" name="id" value="<%=b.getId() %>"></td>
-						<td><%=b.getDetalle() %><input type="hidden" name="id" value="<%=b.getDetalle() %>"></td>
 						<td><%=b.getFecha() %><input type="hidden" name="id" value="<%=b.getFecha() %>"></td>
 						<td><%=b.getHora() %><input type="hidden" name="id" value="<%=b.getHora() %>"></td>
-						<td><%=b.getId_tipoElemento() %><input type="hidden" name="id" value="<%=b.getId_tipoElemento() %>"></td>
-						<td><%=b.getId_elemento() %><input type="hidden" name="id" value="<%=b.getId_elemento() %>"></td>
-						<td><%=b.getId_persona() %><input type="hidden" name="id" value="<%=b.getId_persona() %>"></td>
+						<td><%=nombreType %><input type="hidden" name="id" value="<%=b.getId_tipoElemento() %>"></td>
+						<td><%=nombreItem %><input type="hidden" name="id" value="<%=b.getId_elemento() %>"></td>
+						<td><%=b.getCant_horas() %><input type="hidden" name="id" value="<%=b.getCant_horas() %>"></td>
+						<td><%=b.getDetalle() %><input type="hidden" name="id" value="<%=b.getDetalle() %>"></td>
 						<td><%=b.isAnuladaString() %><input type="hidden" name="id" value="<%=b.isAnulada() %>"></td>
+						<input type="hidden" name="id" value="<%=b.getId_persona() %>">
 						<%if(!b.isAnulada()) 
 						{
 							%>

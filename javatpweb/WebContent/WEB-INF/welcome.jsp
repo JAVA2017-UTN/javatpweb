@@ -14,6 +14,10 @@
 <script src="js/bootstrap.min.js"></script>
 </head>
 <body>
-
+	<div class="login bienvenida">
+		<img alt="utn" src="src/utn.png" class="utn">
+		<h1>Sistema de Reserva</h1>
+		<h2>JAVA 2017</h2>
+	</div>
 </body>
 </html>

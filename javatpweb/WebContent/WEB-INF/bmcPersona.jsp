@@ -18,7 +18,7 @@
 
 <div class="container">
  <div class="col-md-6 col-md-offset-1">
-     <h1>Alta de una nueva Persona</h1>
+     <h1>Modificación de una Persona</h1>
      <hr>
      <form class="form-group" action="ModificarPersona" method="post">
          <div class="form-group">

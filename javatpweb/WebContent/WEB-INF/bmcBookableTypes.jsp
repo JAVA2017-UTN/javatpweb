@@ -18,7 +18,7 @@
 
 <div class="container">
  <div class="col-md-6 col-md-offset-1">
-     <h1>Modificacion de un nuevo tipo de elemento</h1>
+     <h1>Modificacion de un tipo de elemento</h1>
      <hr>
  
    <form class="form-group" action="ModificarBookableTypes" method="post" accept-charset=utf-8>
