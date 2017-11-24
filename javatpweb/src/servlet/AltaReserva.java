@@ -62,10 +62,7 @@ public class AltaReserva extends HttpServlet {
 			bok.setAnulada(false);
 			bok.setCant_horas(cant_horas);
 			try {
-				ctrl.add(bok);
-				
-				Emailer.getInstance().send("tpjava2017@gmail.com","Alta de reserva","Su reserva " +detalle +" para el dia " +fecha +" a las " +hora +" fue realizada con satisfacción.");
-				request.getRequestDispatcher("/reservas.jsp").forward(request, response);
+				ctrl.add(bok);	
 			} catch (AppDataException ade) {
 				request.setAttribute("Error", ade.getMessage());
 			} catch (DuplicatedException de){
@@ -74,6 +71,10 @@ public class AltaReserva extends HttpServlet {
 			} catch (Exception e) {
 				response.setStatus(502);
 			}
+			finally {
+				request.getRequestDispatcher("/reservas.jsp").forward(request, response);		
+			}
+			Emailer.getInstance().send("tpjava2017@gmail.com","Alta de reserva","Su reserva " +detalle +" para el dia " +fecha +" a las " +hora +" fue realizada con satisfacción.");
 			
 			
 		} catch (Exception e) {

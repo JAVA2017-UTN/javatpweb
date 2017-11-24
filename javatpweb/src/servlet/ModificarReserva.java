@@ -54,8 +54,10 @@ public class ModificarReserva extends HttpServlet {
 					} catch (Exception e) {
 						response.setStatus(502);
 					}
+					finally {
+						request.getRequestDispatcher("reservas.jsp").forward(request, response);						
+					}
 					Emailer.getInstance().send("tpjava2017@gmail.com","Baja de reserva","Su reserva de id: " +id +" fue satisfactoriamente eliminada.");
-					request.getRequestDispatcher("reservas.jsp").forward(request, response);
 					
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -76,8 +78,10 @@ public class ModificarReserva extends HttpServlet {
 						e.printStackTrace();
 						response.setStatus(502);
 					}
+					finally {
+						request.getRequestDispatcher("reservas.jsp").forward(request, response);						
+					}
 					Emailer.getInstance().send("tpjava2017@gmail.com","Anulación de reserva","La reserva: " +id +" fue satisfactoriamente anulada.");
-					request.getRequestDispatcher("reservas.jsp").forward(request, response);
 					
 				} catch (Exception e) {
 					e.printStackTrace();
