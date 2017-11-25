@@ -41,6 +41,4 @@ public class BookableItems implements Serializable {
 	public void setId_tipoElemento(int id_tipoElemento) {
 		this.id_tipoElemento = id_tipoElemento;
 	}
-
-	
 }

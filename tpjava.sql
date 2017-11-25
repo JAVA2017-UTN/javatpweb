@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `tpjava` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `tpjava`;
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
 -- Host: localhost    Database: tpjava
@@ -99,7 +97,7 @@ CREATE TABLE `booking` (
   CONSTRAINT `fk_booking_bookable_items` FOREIGN KEY (`id_elemento`) REFERENCES `bookable_items` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_booking_bookable_types` FOREIGN KEY (`id_tipo_elemento`) REFERENCES `bookable_types` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_booking_people` FOREIGN KEY (`id_persona`) REFERENCES `people` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -108,7 +106,7 @@ CREATE TABLE `booking` (
 
 LOCK TABLES `booking` WRITE;
 /*!40000 ALTER TABLE `booking` DISABLE KEYS */;
-INSERT INTO `booking` VALUES ('2017-11-22','12:45:00',' Probando Alta Motos',7,1,51,17,0,24),('2017-11-26','23:12:00',' Probando Alta Camiones',8,3,52,17,0,52),('2017-11-23','03:45:00','Probando Alta Autos ',6,2,53,17,0,34);
+INSERT INTO `booking` VALUES ('2017-11-25','12:45:00',' Probando alta camiones',8,3,55,17,1,96),('2017-11-25','00:00:00',' Probando alert',8,3,56,17,1,12),('2017-11-23','01:41:00','Reserva moto Yamaha',7,1,59,21,0,24);
 /*!40000 ALTER TABLE `booking` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -152,4 +150,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-21 20:07:00
+-- Dump completed on 2017-11-23  2:07:08

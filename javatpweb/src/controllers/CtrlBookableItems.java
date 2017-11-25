@@ -58,5 +58,4 @@ public class CtrlBookableItems {
 		bookitems = databi.getAll();
 		return bookitems.get(index);
 	}
-	
 }
