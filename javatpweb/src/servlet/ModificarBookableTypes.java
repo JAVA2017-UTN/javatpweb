@@ -11,21 +11,26 @@ import javax.servlet.http.HttpServletResponse;
 
 import controllers.CtrlBookingTypes;
 import entity.BookableTypes;
+import entity.People;
 import util.AppDataException;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.Level;
 /**
  * Servlet implementation class ModificarBookableTypes
  */
 @WebServlet("/ModificarBookableTypes")
 public class ModificarBookableTypes extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private Logger logger;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
     public ModificarBookableTypes() {
         super();
-        // TODO Auto-generated constructor stub
+        logger = LogManager.getLogger(getClass());
     }
 
 	/**
@@ -104,12 +109,13 @@ public class ModificarBookableTypes extends HttpServlet {
 					request.setAttribute("Error", ade.getMessage());
 				} catch (SQLException se){
 					request.setAttribute("Errorsql", "Imposible eliminar. Este tipo de elemento esta asociado a un elemento existente");
+					logger.log(Level.ERROR, "Se intento eliminar un tipo de elemento con elementos asociados - Tipo de Elemento: "+bt.getNombre());
 					request.getRequestDispatcher("WEB-INF/sqlError.jsp").forward(request, response);
-					
 				} catch (Exception e) {
 					e.printStackTrace();
 					response.setStatus(502);
 				}
+				logger.log(Level.WARN,((People)request.getSession().getAttribute("user")).getNombre() +" ha eliminado al tipo de elemento: "+bt.getNombre() +" de id: " +bt.getId());
 			}
 			
 			

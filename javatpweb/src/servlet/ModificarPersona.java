@@ -11,19 +11,24 @@ import controllers.CtrlABMPeople;
 import entity.People;
 import util.AppDataException;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.Level;
+
 /**
  * Servlet implementation class ModificarPersona
  */
 @WebServlet("/ModificarPersona")
 public class ModificarPersona extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private Logger logger;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
     public ModificarPersona() {
         super();
-        // TODO Auto-generated constructor stub
+        logger = LogManager.getLogger(getClass());
     }
 
 	/**
@@ -106,7 +111,7 @@ public class ModificarPersona extends HttpServlet {
 				} catch (Exception e) {
 					response.setStatus(502);
 				}
-				
+				logger.log(Level.WARN,((People)request.getSession().getAttribute("user")).getNombre() +" ha eliminado al usuario: "+user +" de id: " +id);
 			}
 			
 			

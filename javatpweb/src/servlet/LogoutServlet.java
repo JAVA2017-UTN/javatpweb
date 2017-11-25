@@ -22,7 +22,6 @@ public class LogoutServlet extends HttpServlet {
      */
     public LogoutServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -34,7 +33,6 @@ public class LogoutServlet extends HttpServlet {
 
         HttpSession session=request.getSession(false);
         session.invalidate();
-
         request.getRequestDispatcher("login.html").include(request, response);
 
         out.close();

@@ -11,18 +11,23 @@ import controllers.CtrlABMPeople;
 import entity.People;
 import util.AppDataException;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.Level;
+
 /**
  * Servlet implementation class Login
  */
 @WebServlet({"/Login", "/login"})
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private Logger logger;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
     public Login() {
-        // TODO Auto-generated constructor stub
+        logger = LogManager.getLogger(getClass());
     }
 
 	/**
@@ -56,19 +61,13 @@ public class Login extends HttpServlet {
 				response.setStatus(502);
 			}
 			if(ctrl.validaUsuario(per) != null) {
-				try {
-					request.getRequestDispatcher("WEB-INF/welcome.jsp").forward(request, response);												
-				} catch (Exception e) {
-					response.setStatus(502);
-				}	
+				logger.log(Level.INFO,"Log in del usuario "+per.getUsuario());
+				request.getRequestDispatcher("WEB-INF/welcome.jsp").forward(request, response);												
+				
 			}
 			else {
-				try {
-					request.getRequestDispatcher("WEB-INF/errorLogueo.jsp").forward(request, response);												
-				} catch (Exception e) {
-					response.setStatus(502);
-				}
-				
+				logger.log(Level.ERROR,"Intento de Log in con credenciales de inicio de sesión incorrectas");
+				request.getRequestDispatcher("WEB-INF/errorLogueo.jsp").forward(request, response);												
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

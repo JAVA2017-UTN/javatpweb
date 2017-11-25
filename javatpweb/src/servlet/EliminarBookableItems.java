@@ -11,7 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import controllers.CtrlBookableItems;
 import entity.BookableItems;
+import entity.People;
 import util.AppDataException;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.Level;
 
 /**
  * Servlet implementation class EliminarBookableItems
@@ -19,13 +24,14 @@ import util.AppDataException;
 @WebServlet("/EliminarBookableItems")
 public class EliminarBookableItems extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private Logger logger;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
     public EliminarBookableItems() {
         super();
-        // TODO Auto-generated constructor stub
+        logger = LogManager.getLogger(getClass());
     }
 
 	/**
@@ -65,16 +71,10 @@ public class EliminarBookableItems extends HttpServlet {
 			}
 			if(request.getParameter("eliminar") != null){
 				
-				int id = Integer.parseInt(request.getParameter("id"));
-				//String nombre = request.getParameter("nombre");
-				//int id_tipoElemento = Integer.parseInt(request.getParameter("tipoElemento"));
-				
+				int id = Integer.parseInt(request.getParameter("id"));	
 				CtrlBookableItems ctrl = new CtrlBookableItems();
-				
 				BookableItems bi = new BookableItems();
-				
 				bi.setId(id);
-				
 				try {
 					ctrl.delete(bi);
 					
@@ -84,11 +84,13 @@ public class EliminarBookableItems extends HttpServlet {
 				} catch (SQLException se){
 					se.printStackTrace();
 					request.setAttribute("Errorsql", "Imposible eliminar. Este elemento esta asociado a una reserva pendiente");
+					logger.log(Level.ERROR, "Se intento eliminar un elemento asociado a una reserva activa - Elemento: "+bi.getNombre());
 					request.getRequestDispatcher("WEB-INF/sqlError.jsp").forward(request, response);
 				} catch (Exception e) {
 					e.printStackTrace();
 					response.setStatus(502);
 				}
+				logger.log(Level.WARN,((People)request.getSession().getAttribute("user")).getNombre() +" ha eliminado al elemento: "+bi.getNombre() +" de id: " +bi.getId());
 			}
 			
 			

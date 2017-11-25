@@ -8,9 +8,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controllers.CtrlBooking;
-import entity.Booking;
+import entity.People;
 import util.AppDataException;
 import util.Emailer;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.Level;
 
 /**
  * Servlet implementation class EliminarReserva
@@ -18,13 +22,14 @@ import util.Emailer;
 @WebServlet("/ModificarReserva")
 public class ModificarReserva extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private Logger logger;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
     public ModificarReserva() {
         super();
-        // TODO Auto-generated constructor stub
+        logger = LogManager.getLogger(getClass());
     }
 
 	/**
@@ -44,6 +49,11 @@ public class ModificarReserva extends HttpServlet {
 			if (request.getParameter("eliminar") != null) {
 				try {
 					int id = Integer.parseInt(request.getParameter("id"));
+					String fecha = request.getParameter("fecha");
+					String hora = request.getParameter("hora");
+					String detalle = request.getParameter("detalle");
+					String tipo_ele = request.getParameter("tipo_ele");
+					String ele = request.getParameter("ele");
 
 					CtrlBooking ctrl = new CtrlBooking();
 
@@ -57,7 +67,10 @@ public class ModificarReserva extends HttpServlet {
 					finally {
 						request.getRequestDispatcher("reservas.jsp").forward(request, response);						
 					}
-					Emailer.getInstance().send("tpjava2017@gmail.com","Baja de reserva","Su reserva de id: " +id +" fue satisfactoriamente eliminada.");
+					Emailer.getInstance().send("tpjava2017@gmail.com","Baja de reserva","La reserva: \n\n" +"ID: "+id +"\nFecha: " +fecha +"\nHora: " +hora 
+					+"\nDetalle: " +detalle +"\nTipo Elemento: " +tipo_ele +"\nElemento: " +ele
+					+"\n\n fue dada de baja.");
+					logger.log(Level.INFO,((People)request.getSession().getAttribute("user")).getNombre() +" ha eliminado su reserva: "+id);
 					
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -67,6 +80,11 @@ public class ModificarReserva extends HttpServlet {
 			if (request.getParameter("anular") != null) {
 				try {
 					int id = Integer.parseInt(request.getParameter("id"));
+					String fecha = request.getParameter("fecha");
+					String hora = request.getParameter("hora");
+					String detalle = request.getParameter("detalle");
+					String tipo_ele = request.getParameter("tipo_ele");
+					String ele = request.getParameter("ele");
 
 					CtrlBooking ctrl = new CtrlBooking();
 
@@ -81,8 +99,10 @@ public class ModificarReserva extends HttpServlet {
 					finally {
 						request.getRequestDispatcher("reservas.jsp").forward(request, response);						
 					}
-					Emailer.getInstance().send("tpjava2017@gmail.com","Anulación de reserva","La reserva: " +id +" fue satisfactoriamente anulada.");
-					
+					Emailer.getInstance().send("tpjava2017@gmail.com","Anulación de reserva","La reserva: \n\n" +"ID: "+id +"\nFecha: " +fecha +"\nHora: " +hora 
+							+"\nDetalle: " +detalle +"\nTipo Elemento: " +tipo_ele +"\nElemento: " +ele
+					+"\n\n fue anulada.");
+					logger.log(Level.WARN,((People)request.getSession().getAttribute("user")).getNombre() +" ha anulado la reserva: "+id);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
