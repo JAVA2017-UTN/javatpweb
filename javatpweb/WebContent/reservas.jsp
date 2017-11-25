@@ -61,14 +61,14 @@
 				<form method="POST" action="ModificarReserva">
 					<tr>
 						<td><%=b.getId() %><input type="hidden" name="id" value="<%=b.getId() %>"></td>
-						<td><%=b.getFecha() %><input type="hidden" name="id" value="<%=b.getFecha() %>"></td>
-						<td><%=b.getHora() %><input type="hidden" name="id" value="<%=b.getHora() %>"></td>
-						<td><%=nombreType %><input type="hidden" name="id" value="<%=b.getId_tipoElemento() %>"></td>
-						<td><%=nombreItem %><input type="hidden" name="id" value="<%=b.getId_elemento() %>"></td>
-						<td><%=b.getId_persona() %><input type="hidden" name="id" value="<%=b.getId_persona() %>"></td>
-						<td><%=b.getCant_horas() %><input type="hidden" name="id" value="<%=b.getCant_horas() %>"></td>
-						<td><%=b.getDetalle() %><input type="hidden" name="id" value="<%=b.getDetalle() %>"></td>
-						<td><%=b.isAnuladaString() %><input type="hidden" name="id" value="<%=b.isAnulada() %>"></td>
+						<td><%=b.getFecha() %><input type="hidden" name="fecha" value="<%=b.getFecha() %>"></td>
+						<td><%=b.getHora() %><input type="hidden" name="hora" value="<%=b.getHora() %>"></td>
+						<td><%=nombreType %><input type="hidden" name="tipo_ele" value="<%=nombreType %>"></td>
+						<td><%=nombreItem %><input type="hidden" name="ele" value="<%=nombreItem %>"></td>
+						<td><%=b.getId_persona() %><input type="hidden" name="id_per" value="<%=b.getId_persona() %>"></td>
+						<td><%=b.getCant_horas() %><input type="hidden" name="cant_horas" value="<%=b.getCant_horas() %>"></td>
+						<td><%=b.getDetalle() %><input type="hidden" name="detalle" value="<%=b.getDetalle() %>"></td>
+						<td><%=b.isAnuladaString() %><input type="hidden" name="anulada" value="<%=b.isAnulada() %>"></td>
 						<%
 						LocalDateTime fecha = LocalDateTime.now();
 						if(!b.isAnulada()) 
@@ -118,14 +118,14 @@
 				<form method="POST" action="ModificarReserva">
 					<tr>
 						<td><%=b.getId() %><input type="hidden" name="id" value="<%=b.getId() %>"></td>
-						<td><%=b.getFecha() %><input type="hidden" name="id" value="<%=b.getFecha() %>"></td>
-						<td><%=b.getHora() %><input type="hidden" name="id" value="<%=b.getHora() %>"></td>
-						<td><%=nombreType %><input type="hidden" name="id" value="<%=b.getId_tipoElemento() %>"></td>
-						<td><%=nombreItem %><input type="hidden" name="id" value="<%=b.getId_elemento() %>"></td>
-						<td><%=b.getCant_horas() %><input type="hidden" name="id" value="<%=b.getCant_horas() %>"></td>
-						<td><%=b.getDetalle() %><input type="hidden" name="id" value="<%=b.getDetalle() %>"></td>
-						<td><%=b.isAnuladaString() %><input type="hidden" name="id" value="<%=b.isAnulada() %>"></td>
-						<input type="hidden" name="id" value="<%=b.getId_persona() %>">
+						<td><%=b.getFecha() %><input type="hidden" name="fecha" value="<%=b.getFecha() %>"></td>
+						<td><%=b.getHora() %><input type="hidden" name="hora" value="<%=b.getHora() %>"></td>
+						<td><%=nombreType %><input type="hidden" name="tipo_ele" value="<%=nombreType %>"></td>
+						<td><%=nombreItem %><input type="hidden" name="ele" value="<%=nombreItem %>"></td>
+						<td><%=b.getCant_horas() %><input type="hidden" name="cant_horas" value="<%=b.getCant_horas() %>"></td>
+						<td><%=b.getDetalle() %><input type="hidden" name="detalle" value="<%=b.getDetalle() %>"></td>
+						<td><%=b.isAnuladaString() %><input type="hidden" name="anulada" value="<%=b.isAnulada() %>"></td>
+						<input type="hidden" name="id_per" value="<%=b.getId_persona() %>">
 						<%if(!b.isAnulada()) 
 						{
 							%>
